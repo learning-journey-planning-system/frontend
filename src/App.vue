@@ -1,14 +1,14 @@
 <template>
-  <TheNavbar />
+  <Navbar />
 </template>
 
 <script>
-import TheNavbar from './components/TheNavbar.vue';
+import Navbar from './components/NavBar.vue';
 
 export default {
   name: 'App',
   components: {
-    TheNavbar,
+    Navbar,
 }
 }
 </script>
