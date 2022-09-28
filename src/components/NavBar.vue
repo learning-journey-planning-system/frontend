@@ -11,10 +11,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Back to LMS</a>
+            <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'HomePage'}">Back to LMS</router-link></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Back to LJPS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'SkillPage'}">Skill Page [ Just Here for Convi]</router-link></a>
           </li>
         </ul>
         <div class="nav-item">
