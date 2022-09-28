@@ -17,7 +17,7 @@
             <a class="nav-link" href="#">Back to LJPS</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'SkillPage'}">Skill Page [ Just Here for Convi]</router-link></a>
+            <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'SkillPage'}">Skill Page [Just Here for Convi]</router-link></a>
           </li>
         </ul>
         <div class="nav-item">
