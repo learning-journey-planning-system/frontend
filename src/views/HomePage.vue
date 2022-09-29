@@ -1,17 +1,16 @@
 <template>
   <NavBar/>
-    <div class="album py-5">
+    <div class="album">
     <div class="container">
+      <h1>Roles</h1>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" v-for="role in roles" :key=role.id>
-          <div class="card shadow-sm">
+          <div @click="sendData([role.id, role.status])" class="card shadow-sm" style="height: 6rem;">
             <div class="card-body">
               <h5 class="card-title">{{role.title}}</h5>
-              <p class="card-text"></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <button v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger">{{role.status}}</button>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -36,13 +35,25 @@ export default {
   data(){
     return{
       roles: [
-        {title: 'Data Analyst', id: 1, status: 'Inactive'},
-        {title: 'Data Scientist', id: 2, status: 'Active'},
-        {title: 'Data Engineer', id: 3, status: 'Active'},
-        {title: 'Machine Learning Engineer', id: 4, details: 'Active'},
+        {title: 'Data Analyst', id: 1, status: 'Active',
+        skills: ['Data Analysis', 'Python']},
+        {title: 'Data Scientist', id: 2, status: 'Active',
+        skills:['Data Analysis']},
+        {title: 'Data Engineer', id: 3, status: 'Inactive',
+        skills:['Communication', 'Tableau']},
+        {title: 'Machine Learning Engineer', id: 4, status: 'Active',
+        skills:['Java']},
       ]
     }
-  }
+  },
+  methods: {
+    sendData(roleDetails) {
+      if(roleDetails[1] != 'Inactive'){
+        this.$router.push({name:'SkillPage', params: {id: roleDetails[0]}}); 
+      }
+      
+    },
+  },  
 }
 
 </script>
