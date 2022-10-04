@@ -11,7 +11,7 @@
       <p>Browse skills and courses</p>
       <ul class="nav flex-column" v-for="skill in skills" :key=skill>
         <li class="nav-item mb-3">
-          <button type="button" class="skillButton btn btn-outline-secondary">{{skill}}</button>
+          <button @click="loadCourses(skill)" type="button" class="skillButton btn btn-outline-secondary">{{skill}}</button>
         </li>
       </ul>
     </div>
@@ -42,6 +42,11 @@ export default {
   },
   created(){
     this.skills = this.roles[this.roleID-1].skills
+  },
+  methods: {
+    loadCourses(){
+      console.log("buttons can be clicked")
+    }
   }
 }
 </script>
