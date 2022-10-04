@@ -16,9 +16,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Back to LJPS</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'SkillPage'}">Skill Page [Just Here for Convi]</router-link></a>
-          </li>
         </ul>
         <div class="nav-item">
         <a class="nav-link me-4" style="color:#6a0dad;"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'LoginPage'} "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#6a0dad" class="bi bi-person-circle me-2 mb-1" viewBox="0 0 16 16">
