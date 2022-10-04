@@ -10,9 +10,10 @@ const routes = [
     component: HomePage
   }, 
   {
-    path: '/SkillPage',
+    path: '/SkillPage/:roleID',
     name: 'SkillPage',
-    component: SkillPage
+    component: SkillPage,
+    props: true,
   },
   {
     path: '/LoginPage',

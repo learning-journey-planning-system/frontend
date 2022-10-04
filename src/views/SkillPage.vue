@@ -26,6 +26,7 @@ export default {
   components: {
     NavBar,
   },
+  props: ['roleID'],
   data(){
     return{
       skills: [
