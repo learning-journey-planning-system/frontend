@@ -5,9 +5,9 @@
       <h1>Roles</h1>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" v-for="role in roles" :key=role.id>
-          <div class="card shadow-sm" style="height: 6rem;">
+          <div @click="sendData([role.id, role.status])" class="card shadow-sm" style="height: 6rem;">
             <div style="cursor: default;" class="card-body">
-              <h5 @click="sendData([role.id, role.status])" class="card-title">{{role.title}}</h5>
+              <h5 class="card-title">{{role.title}}</h5>
               <!-- <router-link style="text-decoration: none; color: inherit;" :to="'/SkillPage/' + role.id"></router-link> -->
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
