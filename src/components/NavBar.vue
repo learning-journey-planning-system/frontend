@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'HomePage'}">Back to LMS</router-link></a>
+            <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'LHomePage'}">Back to LMS</router-link></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Back to LJPS</a>

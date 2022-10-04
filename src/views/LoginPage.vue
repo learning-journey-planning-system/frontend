@@ -3,26 +3,43 @@
       <form>
         <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">User ID</label>
+          <input type="text" class="form-control" v-model="userInput" placeholder="UserID">
+          <label for="userInput">User ID</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+          <input type="password" class="form-control" v-model="passwordInput" placeholder="Password">
+          <label for="PasswordInput">Password</label>
         </div>
-        <!-- <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div> -->
-
-        <!-- rmb to do checking here if admin/learner -->
-        <router-link style="text-decoration: none; color: inherit;" :to="{name: 'HomePage'} "><button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button></router-link>
+        
+        <button @click="signIn()" class="w-100 btn btn-lg btn-primary">Sign in</button>
 
       </form>
     </main>
   
 </template>
+
+<script>
+export default {
+  name: 'LoginPage',
+  data() {
+    return {
+      userInput: "",
+      passwordInput: "",
+      isAdmin: false,
+      userID:""
+    };
+  },
+  methods: {
+    signIn() {
+      if (this.userInput.includes("user")){
+        this.$router.push('/LHomePage'); 
+      } else{
+        // redirect to admin page
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
 

@@ -6,13 +6,13 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" v-for="role in roles" :key=role.id>
           <div @click="sendData([role.id, role.status])" class="card shadow-sm" style="height: 6rem;">
-            <div class="card-body">
+            <div style="cursor: default;" class="card-body">
               <h5 class="card-title">{{role.title}}</h5>
+              <!-- <router-link style="text-decoration: none; color: inherit;" :to="'/SkillPage/' + role.id"></router-link> -->
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger">{{role.status}}</button>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
@@ -49,9 +49,8 @@ export default {
   methods: {
     sendData(roleDetails) {
       if(roleDetails[1] != 'Inactive'){
-        this.$router.push({name:'SkillPage', params: {id: roleDetails[0]}}); 
+        this.$router.push({name:'SkillPage', params: {roleID: roleDetails[0]}}); 
       }
-      
     },
   },  
 }
