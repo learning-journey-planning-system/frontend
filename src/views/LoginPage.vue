@@ -33,8 +33,6 @@ export default {
     signIn() {
       if (this.userInput.includes("user")){
         this.$router.push('/LHomePage'); 
-      } else{
-        // redirect to admin page
       }
     }
   }

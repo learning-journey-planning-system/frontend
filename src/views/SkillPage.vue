@@ -6,7 +6,7 @@
   </svg>Job Roles</h1></router-link></a>
     <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
       <h2 class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <span class="fs-4">Replace with Job Role Selected</span>
+        <span class="fs-4">{{roleName}}</span>
       </h2>
       <p>Browse skills and courses</p>
       <ul class="nav flex-column" v-for="skill in skills" :key=skill>
@@ -42,6 +42,7 @@ export default {
   },
   created(){
     this.skills = this.roles[this.roleID-1].skills
+    this.roleName = this.roles[this.roleID-1].title
   },
   methods: {
     loadCourses(){
