@@ -22,6 +22,14 @@
                 <small class="text-muted"><button v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger disabled">{{role.status}}</button></small>
               </p> 
               <br>
+              <h6>Assign Skills</h6>
+              <select class="form-select" aria-label="Default select example" id = "assignskills" multiple>
+                  <option disabled>Select Skills Here</option>
+                  <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.title}} </option>
+                </select>
+                <br>
+                <button type="button" class="btn btn-outline-primary btn-sm">Confirm</button>
+                <br>
               <a v-bind:href = role.url>Edit</a>
               <br>
             </div>
@@ -49,6 +57,10 @@
           {title: 'Software Developer', id: 2, details: 'lorenz'},
           {title: 'Human Resource', id: 3, details: 'lorenz'},
           {title: 'Business Analyst', id: 4, details: 'lorenz'},
+        ],
+        skills:[
+          {title: 'Tableau' , id: 1},
+          {title: 'Javascript' , id: 2}
         ]
       }
     }
