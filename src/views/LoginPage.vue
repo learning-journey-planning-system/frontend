@@ -14,10 +14,10 @@ export default {
   name: 'LoginPage',
   methods: {
     isLearner() {
-      this.$router.push('/LHomePage'); 
+      this.$router.push({name:'LHomePage'}); 
     },
     isAdmin() {
-      this.$router.push('/LAdminPage'); 
+      this.$router.push({name:'AHomePage'}); 
     },
   }
 }
