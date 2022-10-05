@@ -1,8 +1,23 @@
 <template>
   <NavBar/>
+    <div class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>Welcome {{userType}}</h1>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-sm btn-outline-primary float-end">View My Learning Journeys</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="album">
     <div class="container">
-      <h1>Roles</h1>
+
+          <h2>Browse all roles</h2>
+          
+
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" v-for="role in roles" :key=role.id>
           <div @click="sendData([role.id, role.status, role.title])" class="card shadow-sm" style="height: 6rem;">
@@ -56,3 +71,13 @@ export default {
 }
 
 </script>
+
+<style>
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited {
+    border-color: #6a0dad !important;
+    color: #6a0dad
+}
+.btn-outline-primary:hover, .btn-outline-primary:visited {
+    background-color: #6a0dad !important;
+}
+</style>
