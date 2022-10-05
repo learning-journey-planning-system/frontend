@@ -12,15 +12,16 @@
       <br>
       <div class="row"  v-for="role in roles"  :key=role.id style = "margin-bottom:10px;">
         <div class="col-4">
-          <div class="card shadow-sm" style="height: 7rem;">
+          <div class="card shadow-sm">
             <div class="card-body" style = "padding-bottom:5px;">
               <h5 class="card-title">{{role.title}}</h5>
-              <div class="d-flex justify-content-between align-items-center">
+
+              <p class = "d-flex justify-content-between align-items-center">
                   Role ID: {{role.id}}
                   
                 <small class="text-muted"><button v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger disabled">{{role.status}}</button></small>
-                  
-              </div>
+              </p> 
+              <br>
               <a v-bind:href = role.url>Edit</a>
               <br>
             </div>
