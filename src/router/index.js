@@ -3,6 +3,7 @@ import LHomePage from '../views/LHomePage.vue'
 import SkillPage from '../views/SkillPage.vue'
 import LoginPage from '../views/LoginPage.vue'
 import AViewSkills from '../views/AViewSkills.vue'
+import AViewJobRoles from '../views/AViewJobRoles.vue'
 
 const routes = [
   {
@@ -26,6 +27,12 @@ const routes = [
     path: '/AViewSkills',
     name: 'AViewSkills',
     component: AViewSkills
+  },
+
+  {
+    path: '/AViewJobRoles',
+    name: 'AViewJobRoles',
+    component: AViewJobRoles
   },
 
 ]
