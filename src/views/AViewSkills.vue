@@ -1,9 +1,8 @@
 <template>
-    <NavBar/>
+    <ANavBar/>
+    <MiniNav message="Welcome Admin"/>
     <div class="container">
-        <br>
-      
-      <h1>View Skills</h1>
+      <h2>View Skills</h2>
       <div class = "row">
         <div class = "col" style = "text-align: right;">
           <button type="button" class="btn btn-outline-primary" >Create New Skill</button>
@@ -17,9 +16,7 @@
               <h5 class="card-title">{{skill.title}}</h5>
               <div class="d-flex justify-content-between align-items-center">
                   Skill ID: {{skill.id}}
-                  
                 <small class="text-muted"><button v-if="skill.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger disabled">{{skill.status}}</button></small>
-                  
               </div>
               <a v-bind:href = skill.url>Edit</a>
               <br>
@@ -29,13 +26,15 @@
       </div>    
     </div>
   
-  </template>
+</template>
   
   <script>
-  import NavBar from '../components/NavBar.vue';
+  import ANavBar from '../components/ANavBar.vue';
+  import MiniNav from '../components/MiniNav.vue';
   export default {
     components: {
-      NavBar,
+      ANavBar,
+      MiniNav,
     },
     data(){
       return{

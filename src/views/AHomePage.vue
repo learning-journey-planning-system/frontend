@@ -1,24 +1,20 @@
 <template>
-    <NavBar/>
+    <ANavBar/>
+    <MiniNav message="Welcome Admin"/>
     <div class="container">
-        <br>
-      
-      <h1>View Job Roles</h1>
+      <h2>View Job Roles</h2>
       <div class = "row">
         <div class = "col" style = "text-align: right;">
           <button type="button" class="btn btn-outline-primary" >Create new Role</button>
         </div>
       </div>
-      <br>
       <div class="row"  v-for="role in roles"  :key=role.id style = "margin-bottom:10px;">
         <div class="col-4">
           <div class="card shadow-sm">
             <div class="card-body" style = "padding-bottom:5px;">
               <h5 class="card-title">{{role.title}}</h5>
-
               <p class = "d-flex justify-content-between align-items-center">
                   Role ID: {{role.id}}
-                  
                 <small class="text-muted"><button v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger disabled">{{role.status}}</button></small>
               </p> 
               <br>
@@ -47,10 +43,12 @@
   </template>
   
   <script>
-  import NavBar from '../components/NavBar.vue';
+  import ANavBar from '../components/ANavBar.vue';
+  import MiniNav from '../components/MiniNav.vue'
   export default {
     components: {
-      NavBar,
+      ANavBar,
+      MiniNav
     },
     data(){
       return{

@@ -1,20 +1,9 @@
 <template>
-  <NavBar/>
-    <div class="bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <h1>Welcome Learner</h1>
-          </div>
-          <div class="col">
-            <button type="button" class="btn btn-sm btn-outline-primary float-end">View My Learning Journeys</button>
-          </div>
-        </div>
-      </div>
-    </div>
+  <LNavBar/>
+  <MiniNav message="Welcome Learner"/>
     <div class="album">
     <div class="container">
-        <h2>Browse all roles</h2>
+      <h2>Browse all roles</h2>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" v-for="role in roles" :key=role.id>
           <div @click="sendData([role.id, role.status, role.title])" class="card shadow-sm" style="height: 6rem;">
@@ -23,7 +12,7 @@
               <!-- <router-link style="text-decoration: none; color: inherit;" :to="'/SkillPage/' + role.id"></router-link> -->
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger">{{role.status}}</button>
+                  <button disabled v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger">{{role.status}}</button>
                 </div>
               </div>
             </div>
@@ -37,12 +26,14 @@
 </template>
 
 <script>
-import NavBar from '../components/NavBar.vue';
+import LNavBar from '../components/LNavBar.vue';
+import MiniNav from '../components/MiniNav.vue'
 
 export default {
   name: 'App',
   components: {
-    NavBar,
+    LNavBar,
+    MiniNav,
   },
   props: ['roleType'],
   data(){
@@ -62,7 +53,7 @@ export default {
   methods: {
     sendData(roleDetails) {
       if(roleDetails[1] != 'Inactive'){
-        this.$router.push({name:'SkillPage', params: {roleID: roleDetails[0]}}); 
+        this.$router.push({name:'LViewSkills', params: {roleID: roleDetails[0]}}); 
       }
     },
   },  

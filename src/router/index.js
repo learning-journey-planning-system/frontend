@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LHomePage from '../views/LHomePage.vue'
-import SkillPage from '../views/SkillPage.vue'
+import LViewSkills from '../views/LViewSkills.vue'
 import LoginPage from '../views/LoginPage.vue'
 import AViewSkills from '../views/AViewSkills.vue'
-import AViewJobRoles from '../views/AViewJobRoles.vue'
+import AHomePage from '../views/AHomePage.vue'
+import APanelHome from '../views/APanelHome.vue'
 
 const routes = [
   {
@@ -12,9 +13,9 @@ const routes = [
     component: LHomePage
   }, 
   {
-    path: '/SkillPage/:roleID',
-    name: 'SkillPage',
-    component: SkillPage,
+    path: '/LViewSkills/:roleID',
+    name: 'LViewSkills',
+    component: LViewSkills,
     props: true,
   },
   {
@@ -30,9 +31,15 @@ const routes = [
   },
 
   {
-    path: '/AViewJobRoles',
-    name: 'AViewJobRoles',
-    component: AViewJobRoles
+    path: '/AHomePage',
+    name: 'AHomePage',
+    component: AHomePage
+  },
+
+  {
+    path: '/APanelHome',
+    name: 'APanelHome',
+    component: APanelHome
   },
 
 ]
