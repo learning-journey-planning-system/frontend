@@ -23,15 +23,17 @@
               </p> 
               <br>
               <h6>Assign Skills</h6>
-              <select class="form-select" aria-label="Default select example" id = "assignskills" multiple>
-                  <option disabled>Select Skills Here</option>
-                  <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.title}} </option>
-                </select>
-                <br>
-                <button type="button" class="btn btn-outline-primary btn-sm">Confirm</button>
-                <br>
-              <a v-bind:href = role.url>Edit</a>
-              <br>
+              <form @submit.prevent = "onSubmit(role.id)" >
+                <select class="form-select" aria-label="Default select example" v-model = "skillchoices[role.id]" multiple >
+                    <option disabled>Select Skills Here</option>
+                    <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.title}} </option>
+                  </select>
+              
+                <p class = "d-flex justify-content-between" style = "padding-top:10px">
+                  <input type="submit" class="btn btn-outline-primary btn-sm">
+                  <a v-bind:href = role.url>Edit</a>
+                </p>
+              </form>
             </div>
           </div>
         </div>
@@ -61,8 +63,15 @@
         skills:[
           {title: 'Tableau' , id: 1},
           {title: 'Javascript' , id: 2}
-        ]
+        ],
+        skillchoices:[]
       }
+    },
+
+    methods:{
+      onSubmit(roleid){
+        console.log(roleid)
+      },
     }
   }
   </script>
