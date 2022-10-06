@@ -49,6 +49,12 @@ const routes = [
     component: APanelHome
   },
 
+  {
+    path: '/AViewCourses',
+    name: 'AViewCourses',
+    component: AViewCourses
+  },
+
 ]
 
 const router = createRouter({
