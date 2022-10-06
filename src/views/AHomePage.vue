@@ -1,6 +1,6 @@
 <template>
-  <LNavBar/>
-  <MiniNav message="Welcome Learner"/>
+  <ANavBar/>
+  <MiniNav message="Welcome Admin"/>
     <div class="album">
     <div class="container">
       <h2>Browse all roles</h2>
@@ -26,13 +26,13 @@
 </template>
 
 <script>
-import LNavBar from '../components/LNavBar.vue';
+import ANavBar from '../components/ANavBar.vue';
 import MiniNav from '../components/MiniNav.vue'
 
 export default {
   name: 'App',
   components: {
-    LNavBar,
+    ANavBar,
     MiniNav,
   },
   props: ['roleType'],
