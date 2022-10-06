@@ -1,5 +1,5 @@
 <template>
-    <NavBar/>
+    <ANavBar/>
     <div class="container">
         <br>
       
@@ -41,10 +41,10 @@
   </template>
   
   <script>
-import NavBar from '../components/NavBar.vue';
+import ANavBar from '../components/ANavBar.vue';
   export default {
     components: {
-      NavBar,
+      ANavBar,
     },
     data(){
       return{

@@ -20,7 +20,7 @@
               <br>
               <h6>Assign Skills</h6>
               <form @submit.prevent = "onSubmit(role.id)" >
-                <select class="form-select" aria-label="Default select example" v-model = "skillchoices[role.id]" multiple >
+                <select class="form-select" aria-label="Default select example" v-model = "skillchoices" multiple >
                     <option disabled>Select Skills Here</option>
                     <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.title}} </option>
                   </select>
@@ -62,13 +62,25 @@
           {title: 'Tableau' , id: 1},
           {title: 'Javascript' , id: 2}
         ],
-        skillchoices:[]
+        skillchoices:["Empty"]
       }
     },
 
     methods:{
       onSubmit(roleid){
-        console.log(roleid)
+        const target_copy = Object.assign({}, this.skillchoices);
+        if(target_copy[0] == "Empty"){
+          alert("Please select something")
+        }
+        else{
+          var arrayOfSkills = [];
+          for(var i =0; i < this.skillchoices.length; i++){
+            arrayOfSkills.push(target_copy[i])
+          }
+          console.log("Course ID: " + roleid)
+          console.log(arrayOfSkills)
+        }
+        this.skillchoices = [];
       },
     }
   }

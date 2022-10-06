@@ -6,6 +6,7 @@ import AViewSkills from '../views/AViewSkills.vue'
 import AHomePage from '../views/AHomePage.vue'
 import APanelHome from '../views/APanelHome.vue'
 import AViewRoles from '../views/AViewRoles.vue'
+import AViewCourses from '../views/AViewCourses.vue'
 
 const routes = [
   {
