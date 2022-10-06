@@ -5,6 +5,7 @@ import LoginPage from '../views/LoginPage.vue'
 import AViewSkills from '../views/AViewSkills.vue'
 import AHomePage from '../views/AHomePage.vue'
 import APanelHome from '../views/APanelHome.vue'
+import AViewRoles from '../views/AViewRoles.vue'
 
 const routes = [
   {
@@ -34,6 +35,12 @@ const routes = [
     path: '/AHomePage',
     name: 'AHomePage',
     component: AHomePage
+  },
+
+  {
+    path: '/AViewRoles',
+    name: 'AViewRoles',
+    component: AViewRoles
   },
 
   {

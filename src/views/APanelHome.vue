@@ -15,10 +15,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link" href="#">View Job Roles</a>
+                <a class="nav-link" href="#"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'AViewRoles'}">View Job Roles</router-link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">View Skills</a>
+                <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'AViewSkills'}">View Skills</router-link></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">View Courses</a>

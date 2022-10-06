@@ -1,78 +1,72 @@
 <template>
-    <ANavBar/>
-    <MiniNav message="Welcome Admin"/>
+  <ANavBar/>
+  <MiniNav message="Welcome Admin"/>
+    <div class="album">
     <div class="container">
-      <h2>View Job Roles</h2>
-      <div class = "row">
-        <div class = "col" style = "text-align: right;">
-          <button type="button" class="btn btn-outline-primary" >Create new Role</button>
-        </div>
-      </div>
-      <div class="row"  v-for="role in roles"  :key=role.id style = "margin-bottom:10px;">
-        <div class="col-4">
-          <div class="card shadow-sm">
-            <div class="card-body" style = "padding-bottom:5px;">
+      <h2>Browse all roles</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" v-for="role in roles" :key=role.id>
+          <div @click="sendData([role.id, role.status, role.title])" class="card shadow-sm" style="height: 6rem;">
+            <div style="cursor: default;" class="card-body">
               <h5 class="card-title">{{role.title}}</h5>
-              <p class = "d-flex justify-content-between align-items-center">
-                  Role ID: {{role.id}}
-                <small class="text-muted"><button v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger disabled">{{role.status}}</button></small>
-              </p> 
-              <br>
-              <h6>Assign Skills</h6>
-              <form @submit.prevent = "onSubmit(role.id)" >
-                <select class="form-select" aria-label="Default select example" v-model = "skillchoices[role.id]" multiple >
-                    <option disabled>Select Skills Here</option>
-                    <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.title}} </option>
-                  </select>
-              
-                <p class = "d-flex justify-content-between" style = "padding-top:10px">
-                  <input type="submit" class="btn btn-outline-primary btn-sm">
-                  <a v-bind:href = role.url>Edit</a>
-                </p>
-              </form>
+              <!-- <router-link style="text-decoration: none; color: inherit;" :to="'/SkillPage/' + role.id"></router-link> -->
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button disabled v-if="role.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger">{{role.status}}</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class = "col-4">
-            <h5> Skills Assigned: </h5>
-            <p v-if = "role.skills!=null">{{role.skills.join(", ")}}</p>
-        </div>
-      </div>    
+      </div>
     </div>
-  
-  </template>
-  
-  <script>
-  import ANavBar from '../components/ANavBar.vue';
-  import MiniNav from '../components/MiniNav.vue'
-  export default {
-    components: {
-      ANavBar,
-      MiniNav
-    },
-    data(){
-      return{
-        roles: [
-          {title: 'Data Analyst', id: 1, details: 'loren', status:'Inactive' , url:'http://www.google.com', skills: ["Python", "Tableau"]},
-          {title: 'Software Developer', id: 2, details: 'lorenz'},
-          {title: 'Human Resource', id: 3, details: 'lorenz'},
-          {title: 'Business Analyst', id: 4, details: 'lorenz'},
-        ],
-        skills:[
-          {title: 'Tableau' , id: 1},
-          {title: 'Javascript' , id: 2}
-        ],
-        skillchoices:[]
+  </div>
+
+
+</template>
+
+<script>
+import ANavBar from '../components/ANavBar.vue';
+import MiniNav from '../components/MiniNav.vue'
+
+export default {
+  name: 'App',
+  components: {
+    ANavBar,
+    MiniNav,
+  },
+  props: ['roleType'],
+  data(){
+    return{
+      roles: [
+        {title: 'Data Analyst', id: 1, status: 'Active',
+        skills: ['Data Analysis', 'Python']},
+        {title: 'Data Scientist', id: 2, status: 'Active',
+        skills:['Data Analysis']},
+        {title: 'Data Engineer', id: 3, status: 'Inactive',
+        skills:['Communication', 'Tableau']},
+        {title: 'Machine Learning Engineer', id: 4, status: 'Active',
+        skills:['Java']},
+      ]
+    }
+  },
+  methods: {
+    sendData(roleDetails) {
+      if(roleDetails[1] != 'Inactive'){
+        this.$router.push({name:'LViewSkills', params: {roleID: roleDetails[0]}}); 
       }
     },
+  },  
+}
 
-    methods:{
-      onSubmit(roleid){
-        console.log(roleid)
-      },
-    }
-  }
-  </script>
-  
-  <style>
-  </style>
+</script>
+
+<style>
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited {
+    border-color: #6a0dad !important;
+    color: #6a0dad
+}
+.btn-outline-primary:hover, .btn-outline-primary:visited {
+    background-color: #6a0dad !important;
+}
+</style>
