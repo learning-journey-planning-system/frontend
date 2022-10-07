@@ -13,10 +13,10 @@
       <div class="col" v-for="skill in skills"  :key=skill.id>
         <div @click="sendData([skill.id, skill.status])" class="card shadow-sm" style="height: 7rem;">
           <div class="card-body" style = "padding-bottom:5px;">
-            <h5 class="card-title">{{skill.title}}</h5>
+            <h5 class="card-title">{{skill.skill_name}}</h5>
             <div class="d-flex justify-content-between align-items-center">
                 Skill ID: {{skill.id}}
-              <small class="text-muted"><button v-if="skill.status == 'Inactive'" type="button" class="btn btn-sm btn-outline-danger disabled">{{skill.status}}</button></small>
+              <small class="text-muted"><button v-if="skill.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button></small>
             </div>
             <a v-bind:href = skill.url>Edit</a>
             <br>
@@ -30,6 +30,8 @@
   <script>
   import ANavBar from '../components/ANavBar.vue';
   import BackMiniNav from '../components/BackMiniNav.vue';
+  import axios from 'axios'
+
   export default {
     components: {
       ANavBar,
@@ -37,14 +39,14 @@
     },
     data(){
       return{
-        skills: [
-          {title: 'Data Analysis', id: 1, details: 'loren', status:'Inactive' , url:'http://www.google.com'},
-          {title: 'Python', id: 2, details: 'lorenz'},
-          {title: 'Java', id: 3, details: 'lorenz'},
-          {title: 'Communication', id: 4, details: 'lorenz'},
-          {title: 'Tableau', id: 5, details: 'lorenz'},
-        ]
+        skills: null,
       }
+    },
+
+    mounted(){
+      axios
+          .get("http://127.0.0.1:8000/api/v1/skill/")
+          .then((response) => {this.skills = response.data;})
     }
   }
   </script>

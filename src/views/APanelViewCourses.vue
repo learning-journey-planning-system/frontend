@@ -13,12 +13,14 @@
       <div class="col-4">
         <div class="card shadow-sm">
           <div class="card-body" style = "padding-bottom:5px;">
-            <h5 class="card-title">Course ID: {{course.id}} <br> Name: {{course.title}} <br> Description: {{course.description}} <br> Status: {{course.status}} <br> Type: {{course.type}}   <br> Category: {{course.category}}</h5>
+            <div class="card-title"><b>Course ID:   {{course.id}} </b><br> <b>Name: </b> {{course.course_name}} <br> <b> Description: </b> {{course.course_desc}} <br> <b>Status:  </b> 
+              <span v-if="course.course_status == 'Active'" style = "color:green"> {{course.course_status}} </span> <span v-else style = "color:red"> {{course.course_status}}</span> <br> <b>Type: </b> {{course.course_type}}   <br> <b> Category: </b> {{course.course_category}}</div>
+            <br>
             <h6>Assign Skills</h6>
             <form @submit.prevent = "onSubmit(course.id)" >
               <select class="form-select" aria-label="Default select example" v-model = "skillchoices" multiple >
                   <option disabled>Select Skills Here</option>
-                  <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.title}} </option>
+                  <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.skill_name}} </option>
                 </select>
             
               <p class = "d-flex justify-content-between" style = "padding-top:10px">
@@ -40,6 +42,7 @@
   <script>
 import ANavBar from '../components/ANavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
+import axios from 'axios'
 
 export default {
   components: {
@@ -48,16 +51,8 @@ export default {
   },
   data(){
     return{
-      courses: [
-        {title: 'Web Application Development', id: 1, details: 'loren', status:'Inactive' , url:'http://www.google.com', skills: ["Python", "Tableau"]},
-        {title: 'Software Developer', id: 2, details: 'lorenz'},
-        {title: 'Human Resource', id: 3, details: 'lorenz'},
-        {title: 'Business Analyst', id: 4, details: 'lorenz'},
-      ],
-      skills:[
-        {title: 'Tableau' , id: 1},
-        {title: 'Javascript' , id: 5}
-      ],
+      courses: null,
+      skills: null,
       skillchoices: ["Empty"],
     }
   },
@@ -78,6 +73,16 @@ export default {
       }
       this.skillchoices = [];
     },
+  },
+
+  mounted(){
+    axios
+      .get('http://127.0.0.1:8000/api/v1/course/')
+      .then((response) => {this.courses = response.data;
+        axios
+          .get("http://127.0.0.1:8000/api/v1/skill/")
+          .then((response) => {this.skills = response.data;})
+        })
   }
 }
 </script>
