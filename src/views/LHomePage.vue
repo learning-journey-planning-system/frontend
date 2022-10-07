@@ -50,8 +50,8 @@ export default {
   },
   mounted() {
     axios
-      .get('http://localhost:8080/api/v1/jobrole/available/') // to resolve CORS error -> will be mapped to http://127.0.0.1:8000/api/v1/jobrole/ cos we using a proxy to mask client's domain (localhost:8080)
-      .then(response => (this.roles = response.data)) // returns LIST of roles (as OBJECTS)
+      .get('http://127.0.0.1:8000/api/v1/jobrole/available/')
+      .then(response => (this.roles = response.data))
   }
 }
 
