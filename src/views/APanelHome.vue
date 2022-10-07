@@ -49,7 +49,7 @@
     </div>  
 </template>
   
-  <script>
+<script>
   import ANavBar from '../components/ANavBar.vue';
 
   export default {
