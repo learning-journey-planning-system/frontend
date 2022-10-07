@@ -1,50 +1,50 @@
 <template>
-    <ANavBar/>
-    <MiniNav message="Welcome Admin"/>
-    <div class="container">
-      <h2>View Courses</h2>
-      <div class = "row">
-        <div class = "col" style = "text-align: right;">
-          <button type="button" class="btn btn-outline-primary" >Create new Role</button>
-        </div>
+  <ANavBar/>
+  <BackMiniNav message="Admin Panel"/>
+  <div class="container">
+    <h2>View Courses</h2>
+    <div class = "row">
+      <div class = "col" style = "text-align: right;">
+        <button type="button" class="btn btn-outline-primary" >Create new Role</button>
       </div>
-      <br>
-      <div class="row"  v-for="course in courses"  :key=course.id style = "margin-bottom:10px;">
-        <div class="col-4">
-          <div class="card shadow-sm">
-            <div class="card-body" style = "padding-bottom:5px;">
-              <h5 class="card-title">Course ID: {{course.id}} <br> Name: {{course.title}} <br> Description: {{course.description}} <br> Status: {{course.status}} <br> Type: {{course.type}}   <br> Category: {{course.category}}</h5>
-              <h6>Assign Skills</h6>
-              <form @submit.prevent = "onSubmit(course.id)" >
-                <select class="form-select" aria-label="Default select example" v-model = "skillchoices" multiple >
-                    <option disabled>Select Skills Here</option>
-                    <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.title}} </option>
-                  </select>
-              
-                <p class = "d-flex justify-content-between" style = "padding-top:10px">
-                  <input type="submit" class="btn btn-outline-primary btn-sm">
-                  <a v-bind:href = course.url>Edit</a>
-                </p>
-              </form>
-            </div>
+    </div>
+    <br>
+    <div class="row"  v-for="course in courses"  :key=course.id style = "margin-bottom:10px;">
+      <div class="col-4">
+        <div class="card shadow-sm">
+          <div class="card-body" style = "padding-bottom:5px;">
+            <h5 class="card-title">Course ID: {{course.id}} <br> Name: {{course.title}} <br> Description: {{course.description}} <br> Status: {{course.status}} <br> Type: {{course.type}}   <br> Category: {{course.category}}</h5>
+            <h6>Assign Skills</h6>
+            <form @submit.prevent = "onSubmit(course.id)" >
+              <select class="form-select" aria-label="Default select example" v-model = "skillchoices" multiple >
+                  <option disabled>Select Skills Here</option>
+                  <option v-for="skill in skills" v-bind:key = skill.id v-bind:value= skill.id> {{skill.title}} </option>
+                </select>
+            
+              <p class = "d-flex justify-content-between" style = "padding-top:10px">
+                <input type="submit" class="btn btn-outline-primary btn-sm">
+                <a v-bind:href = course.url>Edit</a>
+              </p>
+            </form>
           </div>
         </div>
-        <div class = "col-4">
-            <h5> Skills Assigned: </h5>
-            <p v-if = "course.skills!=null">{{course.skills.join(", ")}}</p>
-        </div>
-      </div>    
-    </div>
+      </div>
+      <div class = "col-4">
+          <h5> Skills Assigned: </h5>
+          <p v-if = "course.skills!=null">{{course.skills.join(", ")}}</p>
+      </div>
+    </div>    
+  </div>
 </template>
   
   <script>
 import ANavBar from '../components/ANavBar.vue';
-import MiniNav from '../components/MiniNav.vue';
+import BackMiniNav from '../components/BackMiniNav.vue';
 
 export default {
   components: {
     ANavBar,
-    MiniNav
+    BackMiniNav
   },
   data(){
     return{
