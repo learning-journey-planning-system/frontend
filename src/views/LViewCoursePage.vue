@@ -24,7 +24,7 @@
         <span class="fs-4">Skills you will gain</span>
       </h2>
       <div class="col col-12 col-md-1 mb-2 me-3 " v-for="skill in courseDetails.skills" :key=skill.id>
-        <button class="btn btn-primary me-2" type="button">{{skill.skill_name}}</button>
+        <button class="btn btn-outline-success me-2" type="button">{{skill.skill_name}}</button>
       </div>
     </div>
   </div>
