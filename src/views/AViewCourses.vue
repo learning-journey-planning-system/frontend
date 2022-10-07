@@ -15,7 +15,6 @@
           <div class="card shadow-sm">
             <div class="card-body" style = "padding-bottom:5px;">
               <h5 class="card-title">Course ID: {{course.id}} <br> Name: {{course.title}} <br> Description: {{course.description}} <br> Status: {{course.status}} <br> Type: {{course.type}}   <br> Category: {{course.category}}</h5>
-              <br>
               <h6>Assign Skills</h6>
               <form @submit.prevent = "onSubmit(course.id)" >
                 <select class="form-select" aria-label="Default select example" v-model = "skillchoices" multiple >
