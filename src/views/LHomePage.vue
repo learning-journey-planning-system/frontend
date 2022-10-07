@@ -9,7 +9,6 @@
           <div @click="sendData([role.id, role.deleted, role.jobrole_name])" class="card shadow-sm" style="height: 6rem;">
             <div style="cursor: default;" class="card-body">
               <h5 class="card-title">{{role.jobrole_name}}</h5>
-              <!-- <router-link style="text-decoration: none; color: inherit;" :to="'/SkillPage/' + role.id"></router-link> -->
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button disabled v-if="role.deleted == 'true'" type="button" class="btn btn-sm btn-outline-danger">{{role.deleted}}</button>
@@ -45,13 +44,13 @@ export default {
   methods: {
     sendData(roleDetails) {
       if(roleDetails[1] != 'true'){
-        this.$router.push({name:'LViewSkills', params: {roleID: roleDetails[0]}}); 
+        this.$router.push({name:'LViewSkills', params: {roleID: roleDetails[0], rolename: roleDetails[2]}}); 
       }
     },
   },
   mounted() {
     axios
-      .get('http://localhost:8080/api/v1/jobrole/') // to resolve CORS error -> will be mapped to http://127.0.0.1:8000/api/v1/jobrole/ cos we using a proxy to mask client's domain (localhost:8080)
+      .get('http://localhost:8080/api/v1/jobrole/available/') // to resolve CORS error -> will be mapped to http://127.0.0.1:8000/api/v1/jobrole/ cos we using a proxy to mask client's domain (localhost:8080)
       .then(response => (this.roles = response.data)) // returns LIST of roles (as OBJECTS)
   }
 }

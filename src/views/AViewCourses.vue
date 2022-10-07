@@ -1,9 +1,8 @@
 <template>
     <ANavBar/>
+    <MiniNav message="Welcome Admin"/>
     <div class="container">
-        <br>
-      
-      <h1>View Courses</h1>
+      <h2>View Courses</h2>
       <div class = "row">
         <div class = "col" style = "text-align: right;">
           <button type="button" class="btn btn-outline-primary" >Create new Role</button>
@@ -36,50 +35,52 @@
         </div>
       </div>    
     </div>
-  
-  </template>
+</template>
   
   <script>
 import ANavBar from '../components/ANavBar.vue';
-  export default {
-    components: {
-      ANavBar,
-    },
-    data(){
-      return{
-        courses: [
-          {title: 'Web Application Development', id: 1, details: 'loren', status:'Inactive' , url:'http://www.google.com', skills: ["Python", "Tableau"]},
-          {title: 'Software Developer', id: 2, details: 'lorenz'},
-          {title: 'Human Resource', id: 3, details: 'lorenz'},
-          {title: 'Business Analyst', id: 4, details: 'lorenz'},
-        ],
-        skills:[
-          {title: 'Tableau' , id: 1},
-          {title: 'Javascript' , id: 5}
-        ],
-        skillchoices: ["Empty"],
-      }
-    },
+import MiniNav from '../components/MiniNav.vue';
 
-    methods:{
-      onSubmit(courseid){
-        const target_copy = Object.assign({}, this.skillchoices);
-        if(target_copy[0] == "Empty"){
-          alert("Please select something")
-        }
-        else{
-          var arrayOfSkills = [];
-          for(var i =0; i < this.skillchoices.length; i++){
-            arrayOfSkills.push(target_copy[i])
-          }
-          console.log("Course ID: " + courseid)
-          console.log(arrayOfSkills)
-        }
-        this.skillchoices = [];
-      },
+export default {
+  components: {
+    ANavBar,
+    MiniNav
+  },
+  data(){
+    return{
+      courses: [
+        {title: 'Web Application Development', id: 1, details: 'loren', status:'Inactive' , url:'http://www.google.com', skills: ["Python", "Tableau"]},
+        {title: 'Software Developer', id: 2, details: 'lorenz'},
+        {title: 'Human Resource', id: 3, details: 'lorenz'},
+        {title: 'Business Analyst', id: 4, details: 'lorenz'},
+      ],
+      skills:[
+        {title: 'Tableau' , id: 1},
+        {title: 'Javascript' , id: 5}
+      ],
+      skillchoices: ["Empty"],
     }
+  },
+
+  methods:{
+    onSubmit(courseid){
+      const target_copy = Object.assign({}, this.skillchoices);
+      if(target_copy[0] == "Empty"){
+        alert("Please select something")
+      }
+      else{
+        var arrayOfSkills = [];
+        for(var i =0; i < this.skillchoices.length; i++){
+          arrayOfSkills.push(target_copy[i])
+        }
+        console.log("Course ID: " + courseid)
+        console.log(arrayOfSkills)
+      }
+      this.skillchoices = [];
+    },
   }
-  </script>
-  
-  <style>
-  </style>
+}
+</script>
+
+<style>
+</style>

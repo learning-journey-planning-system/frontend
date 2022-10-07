@@ -21,7 +21,7 @@
                 <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'AViewSkills'}">View Skills</router-link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">View Courses</a>
+                <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'AViewCourses'}">View Courses</router-link></a>
               </li>
             </ul>
           </div>

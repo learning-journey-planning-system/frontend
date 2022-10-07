@@ -15,7 +15,7 @@ const routes = [
     component: LHomePage
   }, 
   {
-    path: '/LViewSkills/:roleID',
+    path: '/LViewSkills/:roleID/:rolename',
     name: 'LViewSkills',
     component: LViewSkills,
     props: true,
