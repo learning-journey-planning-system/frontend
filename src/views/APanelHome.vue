@@ -9,8 +9,8 @@
         </div>
       </div>
     </div>
-    <div class="container mt-4" style="margin-left: 240px;">
-      <div class="row" style="text-align: center;" >
+    <div class="container mt-4">
+      <div class="row justify-content-center" style="text-align: center;" >
         <div class="col-lg-3">
           <div class="card" style="width: 18rem;">
             <router-link style="text-decoration: none; color: inherit;" :to="{name: 'APanelViewRoles'}">
@@ -49,7 +49,7 @@
     </div>  
 </template>
   
-  <script>
+<script>
   import ANavBar from '../components/ANavBar.vue';
 
   export default {

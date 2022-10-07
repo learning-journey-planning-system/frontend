@@ -22,7 +22,7 @@
       </div>
       <!-- courses section -->
       <div class="col" v-for="course in courses" :key="course.id">
-        <div @click="sendData([course.course_ID, course.course_status])" class="card shadow-sm text-dark bg-light mb-3" style="width: 18rem; height: 12rem;">
+        <div @click="sendData([course.id, course.course_status, course.course_name])" class="card shadow-sm text-dark bg-light mb-3" style="width: 18rem; height: 12rem;">
           <div class="card-body">
             <h5 class="card-title mb-4">{{ course.course_name }}</h5>
             <p>Type: {{ course.course_type }}</p>
@@ -74,7 +74,7 @@ export default {
     sendData(courseDetails) {
       console.log('in sendData')
       if (courseDetails[1] != 'Inactive') {
-        this.$router.push({ name:'LViewCoursePage', params: { courseID: courseDetails[0] } });
+        this.$router.push({ name:'LViewCoursePage', params: {courseID: courseDetails[0], courseName: courseDetails[2]} });
         console.log('in for loop')
       }
     },

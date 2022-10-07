@@ -1,8 +1,10 @@
 <template>
   <LNavBar />
-  <BackMiniNav message="Job Role Name here!!!" />
+  <BackMiniNav message="Skills" />
   <div class="container">
-
+    <h2 class="d-flex align-items-center p-3 mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <span class="fs-4">{{this.courseName}}</span>
+    </h2>
   </div>
   
 </template>
@@ -16,6 +18,12 @@ export default {
     LNavBar,
     BackMiniNav
   },
-  props: ['courseID']
+  props: ['courseID','courseName'],
+  data(){
+    return {
+    }
+  },
+  methods: {
+  }
 }
 </script>

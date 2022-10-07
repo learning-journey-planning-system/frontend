@@ -66,9 +66,10 @@ const routes = [
     component: APanelViewCourses,
   },
   {
-    path: "/LViewCoursePage",
+    path: "/LViewCoursePage/:courseID/:courseName",
     name: "LViewCoursePage",
     component: LViewCoursePage,
+    props: true
   },
 ];
 
