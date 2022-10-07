@@ -22,7 +22,7 @@
       </div>
       <!-- courses section -->
       <div class="col" v-for="course in courses" :key="course.id">
-        <div class="card shadow-sm" style="width: 18rem; height: 12rem;">
+        <div class="card shadow-sm text-dark bg-light mb-3" style="width: 18rem; height: 12rem;">
           <div class="card-body">
             <h5 class="card-title mb-4">{{ course.course_name }}</h5>
             <p>Type: {{ course.course_type }}</p>
