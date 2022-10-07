@@ -4,7 +4,6 @@
   <div class="container">
     <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
       <h2 class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <!-- <span class="fs-4" id="displayRoleName">{{jobroleskill.jobrole.jobrole_name}}</span> -->
         <span class="fs-4">{{this.rolename}}</span>
       </h2>
       <p>Browse skills and courses</p>
@@ -38,13 +37,6 @@ export default {
     loadCourses(){
       console.log("button can be clicked")
     },
-    getRoleName() {
-      // this.jobroleskills.forEach(jobroleskill => {
-      //   if (jobroleskill.jobrole_id==this.roleID) {
-      //     this.roleName = jobroleskill.jobrole.jobrole_name;
-      //   }
-      // });
-    }
   },
   mounted() {
     axios
