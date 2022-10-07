@@ -42,7 +42,7 @@ export default {
   methods: {
     sendData(roleDetails) {
       if(roleDetails[1] != 'true'){
-        this.$router.push({name:'LViewSkills', params: {roleID: roleDetails[0], rolename: roleDetails[2]}}); 
+        this.$router.push({name:'AViewSkills', params: {roleID: roleDetails[0], rolename: roleDetails[2]}}); 
       }
     },
   },

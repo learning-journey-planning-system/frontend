@@ -2,11 +2,12 @@ import { createRouter, createWebHistory } from "vue-router";
 import LHomePage from '../views/LHomePage.vue'
 import LViewSkills from '../views/LViewSkills.vue'
 import LoginPage from '../views/LoginPage.vue'
-import AViewSkills from '../views/AViewSkills.vue'
 import AHomePage from '../views/AHomePage.vue'
 import APanelHome from '../views/APanelHome.vue'
-import AViewRoles from '../views/AViewRoles.vue'
-import AViewCourses from '../views/AViewCourses.vue'
+import AViewSkills from '../views/AViewSkills.vue'
+import APanelViewSkills from '../views/APanelViewSkills.vue'
+import APanelViewRoles from '../views/APanelViewRoles.vue'
+import APanelViewCourses from '../views/APanelViewCourses.vue'
 
 const routes = [
   {
@@ -27,9 +28,9 @@ const routes = [
   },
 
   {
-    path: '/AViewSkills',
-    name: 'AViewSkills',
-    component: AViewSkills
+    path: '/APanelViewSkills',
+    name: 'APanelViewSkills',
+    component: APanelViewSkills
   },
 
   {
@@ -39,9 +40,16 @@ const routes = [
   },
 
   {
-    path: '/AViewRoles',
-    name: 'AViewRoles',
-    component: AViewRoles
+    path: '/AViewSkills/:roleID/:rolename',
+    name: 'AViewSkills',
+    component: AViewSkills,
+    props: true,
+  },
+
+  {
+    path: '/APanelViewRoles',
+    name: 'APanelViewRoles',
+    component: APanelViewRoles
   },
 
   {
@@ -51,9 +59,9 @@ const routes = [
   },
 
   {
-    path: '/AViewCourses',
-    name: 'AViewCourses',
-    component: AViewCourses
+    path: '/APanelViewCourses',
+    name: 'APanelViewCourses',
+    component: APanelViewCourses
   },
 
 ]
