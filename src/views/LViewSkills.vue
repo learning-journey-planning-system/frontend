@@ -69,7 +69,6 @@ export default {
       axios
         .get(`http://127.0.0.1:8000/api/v1/skill/${skillID}/courses/`)
         .then(response => (this.courses = response.data))
-        console.log(this.courses)
     },
     sendData(courseDetails) {
       console.log('in sendData')
