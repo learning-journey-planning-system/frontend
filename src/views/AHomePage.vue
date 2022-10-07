@@ -3,7 +3,7 @@
   <MiniNav message="Welcome Admin"/>
     <div class="album">
     <div class="container">
-      <h2>Browse all roles</h2>
+      <h2 class="mt-2">Browse all roles</h2>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" v-for="role in roles" :key=role.id>
           <div @click="sendData([role.id, role.deleted, role.jobrole_name])" class="card shadow-sm" style="height: 6rem;">

@@ -2,7 +2,7 @@
   <ANavBar/>
   <BackMiniNav message="Admin Panel"/>
   <div class="container">
-    <h2>View Skills</h2>
+    <h2 class="mt-2">View Skills</h2>
     <div class = "row">
       <div class = "col" style = "text-align: right;">
         <button type="button" class="btn btn-outline-primary" >Create New Skill</button>

@@ -66,7 +66,7 @@ export default {
   methods: {
     loadCourses(skillID){
       axios
-        .get(`http://localhost:8080/api/v1/skill/${skillID}/courses/`)
+        .get(`http://127.0.0.1:8000/api/v1/skill/${skillID}/courses/`)
         .then(response => (this.courses = response.data))
         // console.log(this.courses)
     },
@@ -85,7 +85,7 @@ export default {
   },
   mounted() {
     axios
-      .get(`http://localhost:8080/api/v1/jobrole/${this.roleID}/skills/`)
+      .get(`http://127.0.0.1:8000/api/v1/jobrole/${this.roleID}/skills/`)
       .then(response => (this.jobroleskills = response.data))
   }
 }
