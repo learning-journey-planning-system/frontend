@@ -22,7 +22,7 @@
       </div>
       <!-- courses section -->
       <div class="col" v-for="course in courses" :key="course.id">
-        <div class="card shadow-sm text-dark bg-light mb-3" style="width: 18rem; height: 12rem;">
+        <div @click="sendData([course.course_ID, course.course_status])" class="card shadow-sm text-dark bg-light mb-3" style="width: 18rem; height: 12rem;">
           <div class="card-body">
             <h5 class="card-title mb-4">{{ course.course_name }}</h5>
             <p>Type: {{ course.course_type }}</p>
@@ -70,6 +70,13 @@ export default {
         .get(`http://127.0.0.1:8000/api/v1/skill/${skillID}/courses/`)
         .then(response => (this.courses = response.data))
         console.log(this.courses)
+    },
+    sendData(courseDetails) {
+      console.log('in sendData')
+      if (courseDetails[1] != 'Inactive') {
+        this.$router.push({ name:'LViewCoursePage', params: { courseID: courseDetails[0] } });
+        console.log('in for loop')
+      }
     },
     addCourseToLJ(){
       // axios
