@@ -35,7 +35,7 @@ export default {
     LNavBar,
     MiniNav,
   },
-  props: ['roleType'],
+  props: ['roleType','userName','userID'],
   data(){
     return{
       roles: null
