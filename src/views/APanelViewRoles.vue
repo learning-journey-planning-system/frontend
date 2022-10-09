@@ -5,7 +5,8 @@
     <h2 class="mt-2">View Job Roles</h2>
     <div class = "row">
       <div class = "col" style = "text-align: right;">
-        <button type="button" class="btn btn-outline-primary" >Create new Role</button>
+        <button @click="() => togglePopup('buttonTrigger')" type="button" class="btn btn-outline-primary">Create New Role</button>
+        <CreateRole v-if="popupTriggers.buttonTrigger" :togglePopup="() => togglePopup('buttonTrigger')"/>
       </div>
     </div>
     <div class="row"  v-for="role in roles"  :key=role.id style = "margin-bottom:10px;">
@@ -43,13 +44,31 @@
 </template>
   
   <script>
+  import {ref} from 'vue';
   import ANavBar from '../components/ANavBar.vue';
   import BackMiniNav from '../components/BackMiniNav.vue'
+  import CreateRole from '../components/CreateSkill.vue';
   import axios from 'axios'
+
   export default {
     components: {
       ANavBar,
-      BackMiniNav
+      BackMiniNav,
+      CreateRole
+    },
+    setup(){
+      const popupTriggers = ref({
+        buttonTrigger: false,
+      });
+
+      const togglePopup = (trigger) =>{
+        popupTriggers.value[trigger] = !popupTriggers.value[trigger]
+      }
+      return {
+        CreateRole,
+        popupTriggers,
+        togglePopup
+      }
     },
     data(){
       return{
