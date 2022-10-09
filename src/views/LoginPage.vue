@@ -1,20 +1,35 @@
 <template>
   <main class="form-signin">
     <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
-    <!-- leaving this section here just in case -->
-    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-center">
       <button @click="isLearner()" class="btn btn-primary userButton">Learner</button>
       <button @click="isAdmin()" class="btn btn-success userButton">Admin</button>
-    </div>
+    </div> -->
     <!-- this section creates users based on Staff API -->
-    <div v-for="staff in staffs" :key=staff.id class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Learner</button>
+        <ul class="dropdown-menu">
+          <li v-for="staff in staffs" :key=staff.id @click="isLearner(staff.staff_fname, staff.id)"><a v-if="staff.role_id==2" class="dropdown-item" href="#">{{staff.staff_fname}}</a></li>
+        </ul>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+          aria-expanded="false">Admin</button>
+        <ul class="dropdown-menu">
+          <li v-for="staff in staffs" :key=staff.id @click="isAdmin(staff.staff_fname, staff.id)"><a v-if="staff.role_id==1" class="dropdown-item" href="#">{{staff.staff_fname}}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <div v-for="staff in staffs" :key=staff.id class="d-grid gap-2 d-md-flex justify-content-md-center">
       <div v-if="staff.role_id==2">
         <button @click="isLearner(staff.staff_fname, staff.id)" class="btn btn-primary userButton">{{staff.staff_fname}}</button>
       </div>
       <div v-else-if="staff.role_id==1">
         <button @click="isAdmin(staff.staff_fname, staff.id)" class="btn btn-success userButton">{{staff.staff_fname}}</button>
       </div>
-    </div>
+    </div> -->
   </main>
 
 
