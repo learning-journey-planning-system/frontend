@@ -8,14 +8,13 @@
       <form>
         <h2 class="mb-2">Create a Skill</h2>
         <div class="mb-2">
-          <label>Skill ID</label>
-          <input class="form-control" v-model="skillID" placeholder="Enter Skill ID">
-        </div>
-        <div class="mb-2">
           <label>Skill Name</label>
           <input class="form-control" v-model="skillName" placeholder="Enter Skill Name">
+          <div class="form-text">
+            Please capitalize the first letter of each word
+          </div>
         </div>
-        <button @click="addSkill()" type="button" class="btn btn-success mt-2">Submit</button>
+        <button @click="submitSkill()" type="button" class="btn btn-success mt-2">Submit</button>
       </form>
     </div>
   </div>
@@ -27,17 +26,27 @@ import axios from 'axios'
 export default {
   props: ["togglePopup"],
   methods: {
+    submitSkill(){
+      if (this.skillName.length > 30){
+        alert("Please enter a skill name that is 30 characters or less")
+      } else{
+        this.addSkill()
+      }
+    },
     addSkill(){
       axios
         .post("http://127.0.0.1:8000/api/v1/skill/", {
-          id: this.skillID,
           skill_name: this.skillName
         })
         .then(function(response){
-          console.log(response.data)
+          console.log(response)
+          alert("Skill has been successfully added!");
+          window.location.reload()
         })
         .catch(function(error){
-          alert(error)
+          if (error.response) {
+          alert(error.response.data.detail);
+        }
         })
     }
   }
@@ -67,7 +76,7 @@ export default {
 
 .popup-close{
   position: relative;
-  left: 130px;
+  left: 170px;
   bottom: 25px;
 }
 </style>

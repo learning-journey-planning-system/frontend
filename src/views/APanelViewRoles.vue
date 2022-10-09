@@ -5,8 +5,8 @@
     <h2 class="mt-2">View Job Roles</h2>
     <div class = "row">
       <div class = "col" style = "text-align: right;">
-        <button @click="() => togglePopup('buttonTrigger')" type="button" class="btn btn-outline-primary">Create New Role</button>
-        <CreateRole v-if="popupTriggers.buttonTrigger" :togglePopup="() => togglePopup('buttonTrigger')"/>
+        <button @click="() => togglePopup('buttonTrigger')" type="button" class="btn btn-outline-primary">Create New Job Role</button>
+        <CreateJobRole v-if="popupTriggers.buttonTrigger" :togglePopup="() => togglePopup('buttonTrigger')"/>
       </div>
     </div>
     <div class="row"  v-for="role in roles"  :key=role.id style = "margin-bottom:10px;">
@@ -15,7 +15,7 @@
           <div class="card-body" style = "padding-bottom:5px;">
             <div class = "d-flex justify-content-between "> <h5 class="card-title">{{role.jobrole_name}}</h5> </div>
             <p class = "d-flex justify-content-between align-items-center">
-                Role ID: {{role.id}}
+                Job Role ID: {{role.id}}
               <small class="text-muted"><button v-if="role.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button> <button v-else disabled type="button" class="btn btn-outline-success">Active</button></small>
             </p> 
             <br>
@@ -47,14 +47,14 @@
   import {ref} from 'vue';
   import ANavBar from '../components/ANavBar.vue';
   import BackMiniNav from '../components/BackMiniNav.vue'
-  import CreateRole from '../components/CreateSkill.vue';
+  import CreateJobRole from '../components/CreateJobRole.vue';
   import axios from 'axios'
 
   export default {
     components: {
       ANavBar,
       BackMiniNav,
-      CreateRole
+      CreateJobRole
     },
     setup(){
       const popupTriggers = ref({
@@ -65,7 +65,7 @@
         popupTriggers.value[trigger] = !popupTriggers.value[trigger]
       }
       return {
-        CreateRole,
+        CreateJobRole,
         popupTriggers,
         togglePopup
       }

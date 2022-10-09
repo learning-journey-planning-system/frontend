@@ -6,16 +6,15 @@
         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
       </svg>
       <form>
-        <h2 class="mb-2">Create a Role</h2>
+        <h2 class="mb-2">Create a Job Role</h2>
         <div class="mb-2">
-          <label>Role ID</label>
-          <input class="form-control" v-model="roleID" placeholder="Enter Role ID">
+          <label>Job Role Name</label>
+          <input class="form-control" v-model="jobroleName" placeholder="Enter Job Role Name">
+          <div class="form-text">
+            Please capitalize the first letter of each word
+          </div>
         </div>
-        <div class="mb-2">
-          <label>Role Name</label>
-          <input class="form-control" v-model="roleName" placeholder="Enter Role Name">
-        </div>
-        <button @click="addSkill()" type="button" class="btn btn-success mt-2">Submit</button>
+        <button @click="submitJobrole()" type="button" class="btn btn-success mt-2">Submit</button>
       </form>
     </div>
   </div>
@@ -27,17 +26,27 @@ import axios from 'axios'
 export default {
   props: ["togglePopup"],
   methods: {
-    addSkill(){
+    submitJobrole(){
+      if (this.jobroleName.length > 30){
+        alert("Please enter a job role name that is 30 characters or less")
+      } else{
+        this.addJobrole()
+      }
+    },
+    addJobrole(){
       axios
         .post("http://127.0.0.1:8000/api/v1/jobrole/", {
-          id: this.roleID,
-          jobrole_name: this.roleName
+          jobrole_name: this.jobroleName
         })
         .then(function(response){
-          console.log(response.data)
+          console.log(response)
+          alert("Role has been successfully added!");
+          window.location.reload()
         })
         .catch(function(error){
-          alert(error)
+          if (error.response) {
+          alert(error.response.data.detail);
+        }
         })
     }
   }
@@ -67,7 +76,7 @@ export default {
 
 .popup-close{
   position: relative;
-  left: 130px;
+  left: 170px;
   bottom: 25px;
 }
 </style>
