@@ -31,11 +31,15 @@ export default {
     }
   },
   methods: {
-    isLearner(user_name, user_id) {
-      this.$router.push({ name: 'LHomePage', params: { userName: user_name, userID: user_id } })
+    isLearner(staff_name, staff_id) {
+      this.$router.push({ name: 'LHomePage' })
+      sessionStorage.setItem("staffName", staff_name)
+      sessionStorage.setItem("staffID", staff_id)
     },
-    isAdmin(user_name, user_id) {
-      this.$router.push({ name: 'AHomePage', params: { userName: user_name, userID: user_id } });
+    isAdmin(staff_name, staff_id) {
+      this.$router.push({ name: 'AHomePage'});
+      sessionStorage.setItem("staffName", staff_name)
+      sessionStorage.setItem("staffID", staff_id)
     }
   },
   mounted() {
