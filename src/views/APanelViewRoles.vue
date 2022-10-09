@@ -5,24 +5,25 @@
     <h2 class="mt-2">View Job Roles</h2>
     <div class = "row">
       <div class = "col" style = "text-align: right;">
-        <button type="button" class="btn btn-outline-primary" >Create new Role</button>
+        <button @click="() => togglePopup('buttonTrigger')" type="button" class="btn btn-outline-primary">Create New Job Role</button>
+        <CreateJobRole v-if="popupTriggers.buttonTrigger" :togglePopup="() => togglePopup('buttonTrigger')"/>
       </div>
     </div>
     <div class="row"  v-for="role in roles"  :key=role.id style = "margin-bottom:10px;">
       <div class="col-4">
         <div class="card shadow-sm">
           <div class="card-body" style = "padding-bottom:5px;">
-            <h5 class="card-title">{{role.jobrole_name}}</h5>
+            <div class = "d-flex justify-content-between "> <h5 class="card-title">{{role.jobrole_name}}</h5> </div>
             <p class = "d-flex justify-content-between align-items-center">
-                Role ID: {{role.id}}
-              <small class="text-muted"><button v-if="role.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button></small>
+                Job Role ID: {{role.id}}
+              <small class="text-muted"><button v-if="role.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button> <button v-else disabled type="button" class="btn btn-outline-success">Active</button></small>
             </p> 
             <br>
             <h6>Assign Skills</h6>
             <form @submit.prevent = "onSubmit(role.id)" >
               <select class="form-select" aria-label="Default select example" v-model = "skillchoices" multiple >
                   <option disabled>Select Skills Here</option>
-                  <option v-for="skill in skills"  v-bind:key = skill.id v-bind:value= skill.id> {{skill.skill_name}} </option>
+                  <option v-for="skill in skills"   v-bind:key = skill.id v-bind:value= skill.id> {{skill.skill_name}} </option>
                 </select>
             
               <p class = "d-flex justify-content-between" style = "padding-top:10px">
@@ -43,13 +44,31 @@
 </template>
   
   <script>
+  import {ref} from 'vue';
   import ANavBar from '../components/ANavBar.vue';
   import BackMiniNav from '../components/BackMiniNav.vue'
+  import CreateJobRole from '../components/CreateJobRole.vue';
   import axios from 'axios'
+
   export default {
     components: {
       ANavBar,
-      BackMiniNav
+      BackMiniNav,
+      CreateJobRole
+    },
+    setup(){
+      const popupTriggers = ref({
+        buttonTrigger: false,
+      });
+
+      const togglePopup = (trigger) =>{
+        popupTriggers.value[trigger] = !popupTriggers.value[trigger]
+      }
+      return {
+        CreateJobRole,
+        popupTriggers,
+        togglePopup
+      }
     },
     data(){
       return{
