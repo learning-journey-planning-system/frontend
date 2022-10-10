@@ -16,6 +16,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Back to LMS</a>
           </li>
+          <li v-if="stafftype == 'Admin'" class="nav-item">
+            <a class="nav-link" href="#"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'APanelHome'}">Admin Panel</router-link></a>
+          </li>
         </ul>
         <div class="nav-item">
         <a class="nav-link me-4" style="color:#6a0dad;"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'LoginPage'} "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#6a0dad" class="bi bi-person-circle me-2 mb-1" viewBox="0 0 16 16">
@@ -33,9 +36,12 @@
 export default {
   name: 'NavBar',
   computed: {
-    staffname(){
+    staffname() {
       return sessionStorage.getItem("staffName")
-    }
+    },
+    stafftype(){
+      return sessionStorage.getItem("staffType")
+    },
   }
 }
 </script>

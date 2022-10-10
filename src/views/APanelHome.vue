@@ -1,5 +1,5 @@
 <template>
-    <ANavBar/>
+    <NavBar/>
     <div class="bg-light">
       <div class="container">
         <div class="row">
@@ -50,11 +50,11 @@
 </template>
   
 <script>
-  import ANavBar from '../components/ANavBar.vue';
+  import NavBar from '../components/NavBar.vue';
 
   export default {
     components: {
-      ANavBar,
+      NavBar,
     },
     data(){
       return{

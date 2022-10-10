@@ -1,6 +1,6 @@
 <template>
-  <LNavBar/>
-  <MiniNav message="Welcome Learner"/>
+  <NavBar/>
+  <MiniNav><h1>Welcome, {{staffname}}</h1></MiniNav>
     <div class="album">
     <div class="container">
       <h2 class="mt-2">Browse all roles</h2>
@@ -25,20 +25,28 @@
 </template>
 
 <script>
-import LNavBar from '../components/LNavBar.vue';
+import NavBar from '../components/NavBar.vue';
 import MiniNav from '../components/MiniNav.vue'
 import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    LNavBar,
+    NavBar,
     MiniNav,
   },
   props: ['roleType'],
   data(){
     return{
       roles: null
+    }
+  },
+  computed: {
+    // stafftype(){
+    //   return sessionStorage.getItem("staffType")
+    // },
+    staffname(){
+      return sessionStorage.getItem("staffName")
     }
   },
   methods: {

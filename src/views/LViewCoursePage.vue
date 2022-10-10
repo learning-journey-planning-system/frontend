@@ -1,5 +1,5 @@
 <template>
-  <LNavBar />
+  <NavBar />
   <BackMiniNav message="Skills" />
   <div class="container">
     <div class="row">
@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import LNavBar from '../components/LNavBar.vue';
+import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
 import axios from 'axios';
 
 export default {
   components: {
-    LNavBar,
+    NavBar,
     BackMiniNav
   },
   props: ['courseID','courseName'],

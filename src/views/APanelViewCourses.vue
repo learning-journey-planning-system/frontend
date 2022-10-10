@@ -1,5 +1,5 @@
 <template>
-  <ANavBar/>
+  <NavBar/>
   <BackMiniNav message="Admin Panel"/>
   <div class="container">
     <h2 class="mt-2">View Courses</h2>
@@ -40,13 +40,13 @@
 </template>
   
   <script>
-import ANavBar from '../components/ANavBar.vue';
+import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
 import axios from 'axios'
 
 export default {
   components: {
-    ANavBar,
+    NavBar,
     BackMiniNav
   },
   data(){

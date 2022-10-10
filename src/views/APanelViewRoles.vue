@@ -1,5 +1,5 @@
 <template>
-  <ANavBar/>
+  <NavBar/>
   <BackMiniNav message="Admin Panel"/>
   <div class="container">
     <h2 class="mt-2">View Job Roles</h2>
@@ -45,14 +45,14 @@
   
   <script>
   import {ref} from 'vue';
-  import ANavBar from '../components/ANavBar.vue';
+  import NavBar from '../components/NavBar.vue';
   import BackMiniNav from '../components/BackMiniNav.vue'
   import CreateJobRole from '../components/CreateJobRole.vue';
   import axios from 'axios'
 
   export default {
     components: {
-      ANavBar,
+      NavBar,
       BackMiniNav,
       CreateJobRole
     },

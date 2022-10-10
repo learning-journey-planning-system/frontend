@@ -50,11 +50,13 @@ export default {
       this.$router.push({ name: 'LHomePage' })
       sessionStorage.setItem("staffName", staff_name)
       sessionStorage.setItem("staffID", staff_id)
+      sessionStorage.setItem("staffType", "Learner")
     },
     isAdmin(staff_name, staff_id) {
-      this.$router.push({ name: 'AHomePage'});
+      this.$router.push({ name: 'LHomePage'});
       sessionStorage.setItem("staffName", staff_name)
       sessionStorage.setItem("staffID", staff_id)
+      sessionStorage.setItem("staffType", "Admin")
     }
   },
   mounted() {

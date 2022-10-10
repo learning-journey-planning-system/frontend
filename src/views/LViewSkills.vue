@@ -1,5 +1,5 @@
 <template>
-  <LNavBar/>
+  <NavBar/>
   <BackMiniNav message="Job Roles"/>
   <div class="container">
     <!-- role name and caption -->
@@ -44,13 +44,13 @@
 </template>
 
 <script>
-import LNavBar from '../components/LNavBar.vue';
+import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
 import axios from 'axios';
 
 export default {
   components: {
-    LNavBar,
+    NavBar,
     BackMiniNav,
   },
   props: ['roleID','rolename'],

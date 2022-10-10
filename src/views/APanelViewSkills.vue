@@ -1,5 +1,5 @@
 <template>
-  <ANavBar/>
+  <NavBar/>
   <BackMiniNav message="Admin Panel"/>
   <div class="container">
     <h2 class="mt-2">View Skills</h2>
@@ -30,14 +30,14 @@
   
   <script>
   import {ref} from 'vue';
-  import ANavBar from '../components/ANavBar.vue';
+  import NavBar from '../components/NavBar.vue';
   import BackMiniNav from '../components/BackMiniNav.vue';
   import CreateSkill from '../components/CreateSkill.vue';
   import axios from 'axios'
 
   export default {
     components: {
-      ANavBar,
+      NavBar,
       BackMiniNav,
       CreateSkill,
     },

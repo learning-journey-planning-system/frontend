@@ -3,9 +3,7 @@ import LHomePage from '../views/LHomePage.vue'
 import LViewSkills from '../views/LViewSkills.vue'
 import LoginPage from '../views/LoginPage.vue'
 import LViewCoursePage from "../views/LViewCoursePage.vue";
-import AHomePage from '../views/AHomePage.vue'
 import APanelHome from '../views/APanelHome.vue'
-import AViewSkills from '../views/AViewSkills.vue'
 import APanelViewSkills from '../views/APanelViewSkills.vue'
 import APanelViewRoles from '../views/APanelViewRoles.vue'
 import APanelViewCourses from '../views/APanelViewCourses.vue'
@@ -36,19 +34,6 @@ const routes = [
   },
 
   {
-    path: "/AHomePage",
-    name: "AHomePage",
-    component: AHomePage,
-  },
-
-  {
-    path: "/AViewSkills/:roleID/:rolename",
-    name: "AViewSkills",
-    component: AViewSkills,
-    props: true,
-  },
-
-  {
     path: "/APanelViewRoles",
     name: "APanelViewRoles",
     component: APanelViewRoles,
@@ -65,6 +50,7 @@ const routes = [
     name: "APanelViewCourses",
     component: APanelViewCourses,
   },
+
   {
     path: "/LViewCoursePage/:courseID/:courseName",
     name: "LViewCoursePage",
