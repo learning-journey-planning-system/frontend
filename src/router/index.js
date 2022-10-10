@@ -7,6 +7,7 @@ import APanelHome from '../views/APanelHome.vue'
 import APanelViewSkills from '../views/APanelViewSkills.vue'
 import APanelViewRoles from '../views/APanelViewRoles.vue'
 import APanelViewCourses from '../views/APanelViewCourses.vue'
+import LLearningJourney from '../views/LLearningJourney.vue'
 
 
 const routes = [
@@ -55,7 +56,12 @@ const routes = [
     path: "/LViewCoursePage/:courseID/:courseName",
     name: "LViewCoursePage",
     component: LViewCoursePage,
-    props: true
+    props: true,
+  },
+  {
+    path: "/LLearningJourney",
+    name: "LLearningJourney",
+    component: LLearningJourney
   },
 ];
 

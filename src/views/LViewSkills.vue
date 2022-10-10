@@ -71,10 +71,8 @@ export default {
         .then(response => (this.courses = response.data))
     },
     sendData(courseDetails) {
-      console.log('in sendData')
       if (courseDetails[1] != 'Inactive') {
         this.$router.push({ name:'LViewCoursePage', params: {courseID: courseDetails[0], courseName: courseDetails[2]} });
-        console.log('in for loop')
       }
     },
     addCourseToLJ(){

@@ -6,7 +6,7 @@
           <slot/>
         </div>
         <div class="col">
-          <button type="button" class="btn btn-sm btn-outline-primary float-end">View My Learning Journeys</button>
+          <button @click="goToLearningJourneyPage()" type="button" class="btn btn-sm btn-outline-primary float-end">View My Learning Journeys</button>
         </div>
       </div>
     </div>
@@ -16,6 +16,14 @@
 <script>
 export default {
   name: 'MiniNav',
-  props: ['message']
+  props: ['message'],
+  created(){
+    sessionStorage.setItem("previousPageTitle", this.message) // always gonna be "Job Roles"
+  },
+  methods: {
+    goToLearningJourneyPage() {
+      this.$router.push({ name: 'LLearningJourney' });
+    }
+  }
 }
 </script>
