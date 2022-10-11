@@ -19,9 +19,10 @@ export default {
   name: 'BackMiniNav',
   props: ['message'],
   created(){
-    if (typeof(this.message)!='undefined') {
-      sessionStorage.setItem('previousPageTitle', this.message)
-    }
+    // if (typeof(this.message)!='undefined') {
+    //   console.log('in backmininav')
+    //   sessionStorage.setItem('previousPageTitle', this.message)
+    // }
   },
   computed: {
     newMessage(){

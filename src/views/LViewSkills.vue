@@ -64,6 +64,9 @@ export default {
       saveStatus: "Save"
     }
   },
+  created(){
+    sessionStorage.setItem('previousPageTitle', "Skills")
+  },
   methods: {
     loadCourses(skillID){
       axios
