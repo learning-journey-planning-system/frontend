@@ -1,6 +1,6 @@
 <template>
   <NavBar/>
-  <BackMiniNav message="Back to Job Roles"/>
+  <BackMiniNav message="Job Roles"/>
   <div class="container">
     <!-- role name and caption -->
     <div class="row">
@@ -64,8 +64,8 @@ export default {
       saveStatus: "Save"
     }
   },
-  created(){
-    sessionStorage.setItem('previousPageTitle', "Skills")
+  created() {
+    sessionStorage.setItem("previousPageTitle", "Skills")
   },
   methods: {
     loadCourses(skillID){

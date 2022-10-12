@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <BackMiniNav message="Back to Skills" />
+  <BackMiniNav message="Skills" />
   <div class="container">
     <div class="row">
       <h2 class="d-flex align-items-center p-3 mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
@@ -46,8 +46,8 @@ export default {
       courseDetails: []
     }
   },
-  created() {
-    sessionStorage.setItem('previousPageTitle', "Course")
+  created(){
+    sessionStorage.setItem("previousPageTitle","Course")
   },
   mounted() {
     axios
