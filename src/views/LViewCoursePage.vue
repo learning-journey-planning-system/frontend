@@ -46,6 +46,9 @@ export default {
       courseDetails: []
     }
   },
+  created() {
+    sessionStorage.setItem('previousPageTitle', "Course")
+  },
   mounted() {
     axios
       .get(`http://127.0.0.1:8000/api/v1/course/${this.courseID}`)
