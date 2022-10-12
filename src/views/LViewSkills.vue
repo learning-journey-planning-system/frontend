@@ -1,14 +1,14 @@
 <template>
   <NavBar/>
-  <BackMiniNav message="Job Roles"/>
+  <BackMiniNav message="Back to Job Roles"/>
   <div class="container">
     <!-- role name and caption -->
     <div class="row">
-      <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
+      <div class="d-flex flex-column flex-shrink-0 p-3">
         <h2 class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <span class="fs-4">{{this.rolename}}</span>
+          <span class="fs-2">{{this.rolename}}</span>
         </h2>
-        <p>Browse skills and courses</p>
+        <p>Browse skills & courses</p>
     </div>
     <!-- skill side bar and courses section -->
     <div class="row">
@@ -63,6 +63,9 @@ export default {
       dynamicButton: "btn btn-sm btn-outline-success",
       saveStatus: "Save"
     }
+  },
+  created(){
+    sessionStorage.setItem('previousPageTitle', "Skills")
   },
   methods: {
     loadCourses(skillID){

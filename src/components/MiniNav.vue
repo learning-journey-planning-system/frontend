@@ -18,7 +18,7 @@ export default {
   name: 'MiniNav',
   props: ['message'],
   created(){
-    sessionStorage.setItem("previousPageTitle", this.message) // always gonna be "Job Roles"
+    sessionStorage.setItem("previousPageTitle", "Job Roles") // always gonna be "Job Roles"
   },
   methods: {
     goToLearningJourneyPage() {
