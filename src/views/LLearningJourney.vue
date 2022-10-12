@@ -4,20 +4,26 @@
   <div class="container">
     <div class="row"><h2 class="fs-2 p-3">My Learning Journeys</h2></div>
     <div class="row">
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle text-start" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton1" style="width: 98%;">
-          <div class="container">
-            <div class="row ps-2">
-              <!-- <button v-for="skill in courseDetails.skills" :key=skill.id class="btn btn-outline-success me-3 my-2" type="button" style="width:150px; height: 65px;">{{skill.skill_name}}</button> -->
+      <!-- accordion starts here -->
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item" v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="'#panelsStayOpen-collapse'+learningjourney.id" aria-expanded="true" :aria-controls="'panelsStayOpen-collapse'+learningjourney.id">
+              <strong>Learning Journey 1</strong>
+            </button>
+          </h2>
+          <div :id="'panelsStayOpen-collapse'+learningjourney.id" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+              <button class="btn btn-outline-success me-3 my-2" type="button" style="width:150px; height: 65px;">business development 1</button>
             </div>
           </div>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
+
+    <!-- <div class="row mb-3" v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
+    </div> -->
 
 </template>
 
@@ -34,6 +40,11 @@ export default {
   data(){
     return {
       staffLearningJourneys: null,
+    }
+  },
+  methods:{
+    show(thisthing){
+      console.log(typeof(String(thisthing)))
     }
   },
   mounted() {
