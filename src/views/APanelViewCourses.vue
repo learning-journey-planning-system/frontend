@@ -39,7 +39,7 @@
   </div>
 </template>
   
-  <script>
+<script>
 import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
 import axios from 'axios'
@@ -56,7 +56,9 @@ export default {
       skillchoices: ["Empty"],
     }
   },
-
+  created() {
+    sessionStorage.setItem("previousPageTitle", "View Courses")
+  },
   methods:{
     onSubmit(courseid){
       const target_copy = Object.assign({}, this.skillchoices);

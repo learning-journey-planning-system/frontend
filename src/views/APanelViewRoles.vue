@@ -43,70 +43,72 @@
   
 </template>
   
-  <script>
-  import {ref} from 'vue';
-  import NavBar from '../components/NavBar.vue';
-  import BackMiniNav from '../components/BackMiniNav.vue'
-  import CreateJobRole from '../components/CreateJobRole.vue';
-  import axios from 'axios'
+<script>
+import {ref} from 'vue';
+import NavBar from '../components/NavBar.vue';
+import BackMiniNav from '../components/BackMiniNav.vue'
+import CreateJobRole from '../components/CreateJobRole.vue';
+import axios from 'axios'
 
-  export default {
-    components: {
-      NavBar,
-      BackMiniNav,
-      CreateJobRole
-    },
-    setup(){
-      const popupTriggers = ref({
-        buttonTrigger: false,
-      });
+export default {
+  components: {
+    NavBar,
+    BackMiniNav,
+    CreateJobRole
+  },
+  setup(){
+    const popupTriggers = ref({
+      buttonTrigger: false,
+    });
 
-      const togglePopup = (trigger) =>{
-        popupTriggers.value[trigger] = !popupTriggers.value[trigger]
+    const togglePopup = (trigger) =>{
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger]
+    }
+    return {
+      CreateJobRole,
+      popupTriggers,
+      togglePopup
+    }
+  },
+  data(){
+    return{
+      roles: null,
+      skills: null,
+      skillchoices:["Empty"]
+    }
+  },
+created() {
+  sessionStorage.setItem("previousPageTitle", "View Job Roles")
+},
+  methods:{
+    onSubmit(roleid){
+      const target_copy = Object.assign({}, this.skillchoices);
+      if(target_copy[0] == "Empty"){
+        alert("Please select something")
       }
-      return {
-        CreateJobRole,
-        popupTriggers,
-        togglePopup
-      }
-    },
-    data(){
-      return{
-        roles: null,
-        skills: null,
-        skillchoices:["Empty"]
-      }
-    },
-
-    methods:{
-      onSubmit(roleid){
-        const target_copy = Object.assign({}, this.skillchoices);
-        if(target_copy[0] == "Empty"){
-          alert("Please select something")
+      else{
+        var arrayOfSkills = [];
+        for(var i =0; i < this.skillchoices.length; i++){
+          arrayOfSkills.push(target_copy[i])
         }
-        else{
-          var arrayOfSkills = [];
-          for(var i =0; i < this.skillchoices.length; i++){
-            arrayOfSkills.push(target_copy[i])
-          }
-          console.log("Course ID: " + roleid)
-          console.log(arrayOfSkills)
-        }
-        this.skillchoices = [];
-      },
+        console.log("Course ID: " + roleid)
+        console.log(arrayOfSkills)
+      }
+      this.skillchoices = [];
     },
-    mounted() {
-    axios
-      .get('http://127.0.0.1:8000/api/v1/jobrole/available/')
-      .then((response) => {this.roles = response.data;
-        axios
-          .get("http://127.0.0.1:8000/api/v1/skill/")
-          .then((response) => {this.skills = response.data;})
-        })
-      
-  }
-  }
-  </script>
+  },
+  mounted() {
+  axios
+    .get('http://127.0.0.1:8000/api/v1/jobrole/available/')
+    .then((response) => {this.roles = response.data;
+      axios
+        .get("http://127.0.0.1:8000/api/v1/skill/")
+        .then((response) => {this.skills = response.data;})
+      })
+
+}
+}
+</script>
   
-  <style>
+<style>
   </style>

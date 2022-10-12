@@ -28,51 +28,52 @@
   </div>
 </template>
   
-  <script>
-  import {ref} from 'vue';
-  import NavBar from '../components/NavBar.vue';
-  import BackMiniNav from '../components/BackMiniNav.vue';
-  import CreateSkill from '../components/CreateSkill.vue';
-  import axios from 'axios'
+<script>
+import {ref} from 'vue';
+import NavBar from '../components/NavBar.vue';
+import BackMiniNav from '../components/BackMiniNav.vue';
+import CreateSkill from '../components/CreateSkill.vue';
+import axios from 'axios'
 
-  export default {
-    components: {
-      NavBar,
-      BackMiniNav,
-      CreateSkill,
-    },
-    setup(){
-      const popupTriggers = ref({
-        buttonTrigger: false,
-      });
+export default {
+  components: {
+    NavBar,
+    BackMiniNav,
+    CreateSkill,
+  },
+  setup(){
+    const popupTriggers = ref({
+      buttonTrigger: false,
+    });
 
-      const togglePopup = (trigger) =>{
-        popupTriggers.value[trigger] = !popupTriggers.value[trigger]
-      }
-      return {
-        CreateSkill,
-        popupTriggers,
-        togglePopup
-      }
-    },
-    data(){
-      return{
-        skills: null,
-      }
-    },
-
-    mounted(){
-      axios
-          .get("http://127.0.0.1:8000/api/v1/skill/")
-          .then((response) => {
-            this.skills = response.data;
-
-            })
+    const togglePopup = (trigger) =>{
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger]
     }
+    return {
+      CreateSkill,
+      popupTriggers,
+      togglePopup
+    }
+  },
+  data(){
+    return{
+      skills: null,
+    }
+  },
+created() {
+  sessionStorage.setItem("previousPageTitle", "View Skills")
+},
+mounted(){
+  axios
+      .get("http://127.0.0.1:8000/api/v1/skill/")
+      .then((response) => {
+        this.skills = response.data;
+      })
   }
-  </script>
+}
+</script>
   
-  <style>
+<style>
   .skillButton{
     min-width: 170px;
     max-width: 170px;

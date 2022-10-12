@@ -10,14 +10,14 @@
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Learner</button>
         <ul class="dropdown-menu">
-          <li v-for="staff in staffs" :key=staff.id @click="isLearner(staff.staff_fname, staff.id)"><a v-if="staff.role_id==2" class="dropdown-item" href="#">{{staff.staff_fname}}</a></li>
+          <li v-for="staff in staffs" :key=staff.id @click="isLearner(staff.staff_fname, staff.id)"><a v-if="staff.role_id==2 || staff.role_id==3" class="dropdown-item" href="#">{{staff.staff_fname}} {{staff.staff_lname}}</a></li>
         </ul>
       </div>
       <div class="btn-group">
         <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
           aria-expanded="false">Admin</button>
         <ul class="dropdown-menu">
-          <li v-for="staff in staffs" :key=staff.id @click="isAdmin(staff.staff_fname, staff.id)"><a v-if="staff.role_id==1" class="dropdown-item" href="#">{{staff.staff_fname}}</a></li>
+          <li v-for="staff in staffs" :key=staff.id @click="isAdmin(staff.staff_fname, staff.id)"><a v-if="staff.role_id==1" class="dropdown-item" href="#">{{staff.staff_fname}} {{staff.staff_lname}}</a></li>
         </ul>
       </div>
     </div>
@@ -62,9 +62,7 @@ export default {
   mounted() {
     axios
       .get('http://127.0.0.1:8000/api/v1/staff/')
-      .then(response => (
-        console.log(response.data),
-        this.staffs = response.data))
+      .then(response => (this.staffs = response.data))
   }
 }
 </script>
