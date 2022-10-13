@@ -12,7 +12,7 @@
               <strong>Learning Journey {{this.staffLearningJourneys.indexOf(learningjourney)+1}}</strong>
             </button>
           </h2>
-          <div :id="'panelsStayOpen-collapse'+learningjourney.id" class="accordion-collapse collapse show">
+          <div :id="'panelsStayOpen-collapse'+learningjourney.id" class="accordion-collapse collapse">
             <div class="accordion-body">
               <h4>{{learningjourney.jobrole.jobrole_name}}</h4>
               <button v-for="skillName in allSkills(learningjourney)" :key="skillName" class="btn btn-outline-success me-3 my-2" type="button" style="width:150px; height: 65px;">{{skillName}}</button>
