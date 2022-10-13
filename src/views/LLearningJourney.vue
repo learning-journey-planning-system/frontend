@@ -9,12 +9,13 @@
         <div class="accordion-item" v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
           <h2 class="accordion-header">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="'#panelsStayOpen-collapse'+learningjourney.id" aria-expanded="true" :aria-controls="'panelsStayOpen-collapse'+learningjourney.id">
-              <strong>Learning Journey 1</strong>
+              <strong>Learning Journey {{this.staffLearningJourneys.indexOf(learningjourney)+1}}</strong>
             </button>
           </h2>
           <div :id="'panelsStayOpen-collapse'+learningjourney.id" class="accordion-collapse collapse show">
             <div class="accordion-body">
-              <button class="btn btn-outline-success me-3 my-2" type="button" style="width:150px; height: 65px;">business development 1</button>
+              <h4>{{learningjourney.jobrole.jobrole_name}}</h4>
+              <button v-for="skillName in allStaffSkills" :key="skillName" class="btn btn-outline-success me-3 my-2" type="button" style="width:150px; height: 65px;">{{skillName}}</button>
             </div>
           </div>
         </div>
@@ -40,6 +41,33 @@ export default {
   data(){
     return {
       staffLearningJourneys: null,
+    }
+  },
+  computed: {
+    allStaffSkills() {
+      var allCourses = null;
+      // var allSkills = null;
+      var allSkillsName = [];
+      // console.log("in method",this.staffLearningJourneys.length)
+      for (let i = 0; i < this.staffLearningJourneys.length; i++) {
+        // console.log('in all LJ of staff')
+        allCourses = this.staffLearningJourneys[i].courses
+        // console.log("all courses", allCourses)
+        for (let j = 0; j < allCourses.length; j++) {
+          // console.log("looking at one course")
+          // allSkills = allCourses[j].skills
+          // console.log("length of this course", allSkills)
+          for (let k = 0; k < allCourses[j].skills.length; k++) {
+            // console.log("looping through all skills")
+            console.log(allCourses[j].skills[k])
+            allSkillsName.push(allCourses[j].skills[k].skill_name)
+          }
+        }
+      }
+      allSkillsName = [...new Set(allSkillsName)]
+      // console.log(allSkillsNameArray)
+      // console.log("set the array", [...new Set(allSkillsNameArray)])
+      return allSkillsName
     }
   },
   methods:{
