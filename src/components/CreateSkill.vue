@@ -29,7 +29,8 @@ export default {
     submitSkill(){
       if (this.skillName.length > 30){
         alert("Please enter a skill name that is 30 characters or less")
-      } else{
+      }
+      else{
         this.addSkill()
       }
     },
