@@ -13,7 +13,7 @@
     <!-- skill side bar and courses section -->
     <div class="row">
       <!-- skill side bar -->
-      <div class="col">
+      <div class="col-3">
         <ul class="nav flex-column" v-for="jobroleskill in jobroleskills" :key=jobroleskill.id>
           <li class="nav-item mb-3">
             <button @click="loadCourses(jobroleskill.id)" type="button" class="skillButton btn btn-outline-secondary">{{jobroleskill.skill_name}}</button>
@@ -21,18 +21,20 @@
         </ul>
       </div>
       <!-- courses section -->
-      <div class="col" v-for="course in courses" :key="course.id">
-        <div @click="sendData([course.id, course.course_status, course.course_name])" class="card shadow-sm text-dark bg-light mb-3" style="width: 18rem; height: 12rem;">
-          <div class="card-body">
-            <h5 class="card-title mb-4">{{ course.course_name }}</h5>
-            <p>Type: {{ course.course_type }}</p>
-            <p>Category: {{ course.course_category }}</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <!-- <button v-if="course.course_status == 'Inactive'" type="button"
-                  class="btn btn-sm btn-outline-danger">{{course.course_status}}</button> -->
-                  <button @click="addCourseToLJ()" type="button" :class="dynamicButton">{{saveStatus}}</button>
-              </div>
+      <div class="col-9">
+        <div class="row justify-content-around">
+          <div @click="sendData([course.id, course.course_status, course.course_name])" v-for="course in courses" :key="course.id" class="card shadow-sm text-dark bg-light mb-4" style="width: 18rem; height: 14rem;">
+            <div class="card-body">
+              <h5 class="card-title mb-4">{{ course.course_name }}</h5>
+              <p>Type: {{ course.course_type }}</p>
+              <p>Category: {{ course.course_category }}</p>
+              <!-- <div class="d-flex justify-content-between align-items-center"> -->
+                <a href="#" @click="addCourseToLJ()" class="btn btn-outline-success">Save</a>
+                  <!-- <button v-if="course.course_status == 'Inactive'" type="button"
+                    class="btn btn-sm btn-outline-danger">{{course.course_status}}</button> -->
+                    <!-- <button @click="addCourseToLJ()" type="button" :class="dynamicButton">{{saveStatus}}</button> -->
+                <!-- </div> -->
+              <!-- </div> -->
             </div>
           </div>
         </div>
