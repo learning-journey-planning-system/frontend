@@ -14,8 +14,25 @@
           </h2>
           <div :id="'panelsStayOpen-collapse'+learningjourney.id" class="accordion-collapse collapse">
             <div class="accordion-body">
-              <h4>{{learningjourney.jobrole.jobrole_name}}</h4>
-              <button v-for="skillName in allSkills(learningjourney)" :key="skillName" class="btn btn-outline-success me-3 my-2" type="button" style="width:150px; height: 65px;">{{skillName}}</button>
+              <div class="container">
+                <h4 class="mt-1 mb-4">{{learningjourney.jobrole.jobrole_name}}</h4>
+                <!-- display all skills for this learning journey -->
+                <button v-for="skillName in allSkills(learningjourney)" :key="skillName" class="btn btn-outline-success me-3 my-2" type="button" style="width:150px; height: 65px;">{{skillName}}</button>
+                <!-- display all courses for this learning journey -->
+                  <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-3 mt-3">
+                    <div class="col" v-for="course in allCourses(learningjourney)" :key="course.id" >
+                      <div @click="sendData([course.id, course.course_status, course.course_name])" class="card shadow-sm text-dark bg-light" style="width: 18rem; height: 14rem;">
+                        <div class="card-body">
+                          <h5 class="card-title mb-4">{{ course.course_name }}</h5>
+                          <p>Type: {{ course.course_type }}</p>
+                          <p>Category: {{ course.course_category }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -47,6 +64,11 @@ export default {
     show(thisthing){
       console.log(typeof(String(thisthing)))
     },
+    sendData(courseDetails) {
+      if (courseDetails[1] != 'Inactive') {
+        this.$router.push({ name: 'LViewCoursePage', params: { courseID: courseDetails[0], courseName: courseDetails[2] } });
+      }
+    },
     allSkills(lj){
       var skillsForThisLJ = [];
       for (let i = 0; i < lj.courses.length; i++) {
@@ -55,6 +77,13 @@ export default {
         }
       }
       return skillsForThisLJ
+    },
+    allCourses(lj) {
+      var coursesForThisLJ = [];
+      for (let i = 0; i < lj.courses.length; i++) {
+        coursesForThisLJ.push(lj.courses[i])
+      }
+      return coursesForThisLJ
     },
   },
   mounted() {
