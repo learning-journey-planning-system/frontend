@@ -18,6 +18,7 @@
                 <h4 class="mt-1 mb-4">{{learningjourney.jobrole.jobrole_name}}</h4>
                 <!-- display all skills for this learning journey -->
                 <button v-for="skillName in allSkills(learningjourney)" :key="skillName" class="btn btn-outline-success me-3 my-2" type="button" style="width:150px; height: 65px;">{{skillName}}</button>
+
                 <!-- display all courses for this learning journey -->
                   <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-3 mt-3">
                     <div class="col" v-for="course in allCourses(learningjourney)" :key="course.id" >
@@ -31,7 +32,6 @@
                     </div>
                   </div>
               </div>
-
 
             </div>
           </div>
