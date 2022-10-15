@@ -29,7 +29,7 @@
               <p>Type: {{ course.course_type }}</p>
               <p>Category: {{ course.course_category }}</p>
               <!-- <div class="d-flex justify-content-between align-items-center"> -->
-                <a :href="'#'+course.id" @click.stop="addCourseToLJ()" :class=dynamicButton>{{saveStatus}}</a>
+                <!-- <a :href="'#'+course.id" @click.stop="addCourseToLJ()" :class=dynamicButton>{{saveStatus}}</a> -->
                     <!-- <button @click="addCourseToLJ()" type="button" :class="dynamicButton">{{saveStatus}}</button> -->
                 <!-- </div> -->
               <!-- </div> -->
@@ -60,8 +60,8 @@ export default {
       roleName: String,
       courses: null,
       skillID: String,
-      dynamicButton: "btn btn-success",
-      saveStatus: "Save"
+      // dynamicButton: "btn btn-success",
+      // saveStatus: "Save"
     }
   },
   created() {
@@ -82,18 +82,18 @@ export default {
         this.$router.push({ name:'LViewCoursePage', params: {courseID: courseDetails[0], courseName: courseDetails[2]} });
       }
     },
-    addCourseToLJ(neil){
-      // axios
-      console.log(neil)
-      // change button
-      if(this.saveStatus == "Save"){
-        this.dynamicButton = "btn btn-danger";
-        this.saveStatus = "Unsave"
-      }else{
-        this.dynamicButton = "btn btn-success";
-        this.saveStatus = "Save"
-      }
-    }
+    // addCourseToLJ(neil){
+    //   // axios
+    //   console.log(neil)
+    //   // change button
+    //   if(this.saveStatus == "Save"){
+    //     this.dynamicButton = "btn btn-danger";
+    //     this.saveStatus = "Unsave"
+    //   }else{
+    //     this.dynamicButton = "btn btn-success";
+    //     this.saveStatus = "Save"
+    //   }
+    // }
   },
   mounted() {
     axios
