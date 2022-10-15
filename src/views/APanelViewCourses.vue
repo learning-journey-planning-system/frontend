@@ -3,17 +3,17 @@
   <BackMiniNav message="Admin Panel"/>
   <div class="container">
     <h2 class="mt-2">View Courses</h2>
-    <div class = "row">
+    <!-- <div class = "row">
       <div class = "col" style = "text-align: right;">
         <button type="button" class="btn btn-outline-primary" >Create new Role</button>
       </div>
-    </div>
+    </div> -->
     <br>
     <div class="row"  v-for="course in courses"  :key=course.id style = "margin-bottom:10px;">
       <div class="col-4">
         <div class="card shadow-sm">
           <div class="card-body" style = "padding-bottom:5px;">
-            <div class="card-title"><b>Course ID:   {{course.id}} </b><br> <b>Name: </b> {{course.course_name}} <br> <b> Description: </b> {{course.course_desc}} <br> <b>Status:  </b> 
+            <div class="card-title"><h5>{{course.course_name}}</h5><b>Course ID: {{course.id}} </b><br> <b> Description: </b> {{course.course_desc}} <br> <b>Status:  </b> 
               <span v-if="course.course_status == 'Active'" style = "color:green"> {{course.course_status}} </span> <span v-else style = "color:red"> {{course.course_status}}</span> <br> <b>Type: </b> {{course.course_type}}   <br> <b> Category: </b> {{course.course_category}}</div>
             <br>
             <h6>Assign Skills</h6>
@@ -25,14 +25,14 @@
             
               <p class = "d-flex justify-content-between" style = "padding-top:10px">
                 <input type="submit" class="btn btn-outline-primary btn-sm">
-                <a v-bind:href = course.url>Edit</a>
               </p>
             </form>
+            
           </div>
         </div>
       </div>
       <div class = "col-4">
-          <h5> Skills Assigned: </h5>
+          <h5> Skills Assigned <button @click="editSkills([course.id, course.course_name])" type="button" class="btn btn-sm btn-warning ms-2 mb-1">Delete Skills</button></h5> 
           <p v-if = "course.skills!=null">{{course.skills.join(", ")}}</p>
       </div>
     </div>    
@@ -47,7 +47,7 @@ import axios from 'axios'
 export default {
   components: {
     NavBar,
-    BackMiniNav
+    BackMiniNav,
   },
   data(){
     return{
@@ -75,6 +75,10 @@ export default {
       }
       this.skillchoices = [];
     },
+    editSkills(courseDetails){
+      // console.log(courseID)
+      this.$router.push({name:'ADeleteSkillsFromCourses', params: {courseID: courseDetails[0], courseName: courseDetails[1]}});  
+    }
   },
 
   mounted(){
