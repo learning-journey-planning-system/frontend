@@ -107,7 +107,7 @@ export default {
       .get('http://127.0.0.1:8000/api/v1/course/')
       .then((response) => {this.courses = response.data;
         axios
-          .get("http://127.0.0.1:8000/api/v1/skill/")
+          .get("http://127.0.0.1:8000/api/v1/skill/available/")
           .then((response) => {this.skills = response.data;
             this.courses.forEach(course => {
               axios
