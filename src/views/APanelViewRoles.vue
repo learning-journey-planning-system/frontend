@@ -99,6 +99,20 @@ created() {
         }
         console.log("Course ID: " + roleid)
         console.log(arrayOfSkills)
+        for(i = 0; i < arrayOfSkills.length ; i ++){
+          axios
+          .post("http://127.0.0.1:8000/api/v1/jobrole/"+ roleid + "/new_skill/?skill_id=" + arrayOfSkills[i])
+          .then(function(response){
+            console.log(response.data)
+            alert("Skill has been successfully added!");
+          })
+          .catch(function(error){
+            if(error.response){
+              alert(error.response.data.detail);
+            }
+          })
+        }
+        window.location.reload()
       }
       this.skillchoices = [];
     },
