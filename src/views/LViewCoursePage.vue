@@ -10,7 +10,7 @@
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
               <a class="dropdown-item" href="#" @click="addCourseToLJ(learningjourney.id, this.courseID)">
-                <MiniSaveButton /> Learning Journey {{this.staffLearningJourneys.indexOf(learningjourney)+1}} -
+                <MiniSaveButton v-show="isActive(learningjourney, this.courseID)"/> Learning Journey {{this.staffLearningJourneys.indexOf(learningjourney)+1}} -
                 {{learningjourney.jobrole.jobrole_name}}
               </a>
             </li>
@@ -73,16 +73,29 @@ export default {
     return {
       courseDetails: [],
       staffLearningJourneys: null,
-      responseMessage: null
+      responseMessage: null,
+      active: null
     }
   },
   created() {
     sessionStorage.setItem("previousPageTitle", "Course")
   },
   methods: {
+    isActive(lj,cID) {
+      // var coursesForThisLJ = [];
+      for (let i = 0; i < lj.courses.length; i++) {
+        // coursesForThisLJ.push(lj.courses[i])
+        if (lj.courses[i].id == cID) {
+          return true
+        }
+      }
+      return false
+    },
     addCourseToLJ(ljID, cID) {
       // console.log("learning journey id", ljID)
       // console.log("course id", cID)
+
+      // this.active = !this.active;
 
       axios
         .post(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/new_course/?course_id=${cID}`, {
@@ -90,7 +103,7 @@ export default {
         })
         .then(function () {
           alert("Course has been successfully added!");
-          // window.location.reload();
+          window.location.reload();
           axios
             .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
             .then((response) => { console.log(response.data) })
