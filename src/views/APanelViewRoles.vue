@@ -28,14 +28,13 @@
             
               <p class = "d-flex justify-content-between" style = "padding-top:10px">
                 <input type="submit" class="btn btn-outline-primary btn-sm">
-                <a v-bind:href = role.url>Edit</a>
               </p>
             </form>
           </div>
         </div>
       </div>
       <div class = "col-4">
-          <h5> Skills Assigned: </h5>
+          <h5> Skills Assigned <button @click="deleteSkills([role.id, role.jobrole_name])" type="button" class="btn btn-sm btn-warning ms-2 mb-1">Delete Skills</button></h5>
           <p v-if = "role.skills.length != 0"><span v-for="skill in role.skills" v-bind:key = skill.id> 
                <span v-if="skill.deleted == false"  style = "color:green">{{skill.skill_name}} <br></span>
                <span v-else style = "color:red">{{skill.skill_name}} <br> </span> 
@@ -103,6 +102,10 @@ created() {
       }
       this.skillchoices = [];
     },
+    deleteSkills(roleDetails){
+      // console.log(roleDetails)
+      this.$router.push({name:'ADeleteSkillsFromRoles', params: {roleID: roleDetails[0], roleName: roleDetails[1]}}); 
+    }
 
   },
   mounted() {
