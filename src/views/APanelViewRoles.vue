@@ -36,7 +36,14 @@
       </div>
       <div class = "col-4">
           <h5> Skills Assigned: </h5>
-          <p v-if = "role.skills!=null">{{role.skills.join(", ")}}</p>
+          <p v-if = "role.skills.length != 0"><span v-for="skill in role.skills" v-bind:key = skill.id> 
+               <span v-if="skill.deleted == false"  style = "color:green">{{skill.skill_name}} <br></span>
+               <span v-else style = "color:red">{{skill.skill_name}} <br> </span> 
+            </span>
+          </p>
+          <p v-else>
+             No skills assigned for this course currently.
+          </p>
       </div>
     </div>    
   </div>
@@ -96,6 +103,7 @@ created() {
       }
       this.skillchoices = [];
     },
+
   },
   mounted() {
   axios
@@ -103,7 +111,16 @@ created() {
     .then((response) => {this.roles = response.data;
       axios
         .get("http://127.0.0.1:8000/api/v1/skill/")
-        .then((response) => {this.skills = response.data;})
+        .then((response) => {this.skills = response.data;
+          this.roles.forEach(role => {
+              axios
+              .get("http://127.0.0.1:8000/api/v1/jobrole/" + role.id +"/skills/")
+              .then((response) => {
+                var jobSkills = response.data;
+                var specifiedJob = this.roles.find(x   => x.id === role.id)
+                specifiedJob.skills = jobSkills;
+              })
+            })})
       })
 
 }

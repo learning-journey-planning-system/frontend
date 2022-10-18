@@ -33,7 +33,14 @@
       </div>
       <div class = "col-4">
           <h5> Skills Assigned <button @click="editSkills([course.id, course.course_name])" type="button" class="btn btn-sm btn-warning ms-2 mb-1">Delete Skills</button></h5> 
-          <p v-if = "course.skills!=null">{{course.skills.join(", ")}}</p>
+          <p v-if = "course.skills.length != 0"><span v-for="skill in course.skills" v-bind:key = skill.id> 
+               <span v-if="skill.deleted == false"  style = "color:green">{{skill.skill_name}} <br></span>
+               <span v-else style = "color:red">{{skill.skill_name}} <br> </span> 
+            </span>
+          </p>
+          <p v-else>
+             No skills assigned for this course currently.
+          </p>
       </div>
     </div>    
   </div>
@@ -87,7 +94,17 @@ export default {
       .then((response) => {this.courses = response.data;
         axios
           .get("http://127.0.0.1:8000/api/v1/skill/")
-          .then((response) => {this.skills = response.data;})
+          .then((response) => {this.skills = response.data;
+            this.courses.forEach(course => {
+              axios
+              .get("http://127.0.0.1:8000/api/v1/course/" + course.id + "/")
+              .then((response) => {
+                var courseSkills = response.data.skills;
+                var specifiedcourse = this.courses.find(x   => x.id === course.id)
+                specifiedcourse.skills = courseSkills;
+              })
+            })
+          })
         })
   }
 }
