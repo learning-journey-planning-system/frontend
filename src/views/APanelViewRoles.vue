@@ -127,7 +127,7 @@ created() {
     .get('http://127.0.0.1:8000/api/v1/jobrole/available/')
     .then((response) => {this.roles = response.data;
       axios
-        .get("http://127.0.0.1:8000/api/v1/skill/")
+        .get("http://127.0.0.1:8000/api/v1/skill/available/")
         .then((response) => {this.skills = response.data;
           this.roles.forEach(role => {
               axios
