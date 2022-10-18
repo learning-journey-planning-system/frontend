@@ -9,6 +9,7 @@ import APanelViewRoles from '../views/APanelViewRoles.vue'
 import APanelViewCourses from '../views/APanelViewCourses.vue'
 import LLearningJourney from '../views/LLearningJourney.vue'
 import ADeleteSkillsFromCourses from '../views/ADeleteSkillsFromCourses.vue'
+import ADeleteSkillsFromRoles from '../views/ADeleteSkillsFromRoles.vue'
 
 const routes = [
   {
@@ -66,6 +67,12 @@ const routes = [
     path: "/ADeleteSkillsFromCourses/:courseID/:courseName",
     name: "ADeleteSkillsFromCourses",
     component: ADeleteSkillsFromCourses,
+    props: true
+  },
+  {
+    path: "/ADeleteSkillsFromRoles/:roleID/:roleName",
+    name: "ADeleteSkillsFromRoles",
+    component: ADeleteSkillsFromRoles,
     props: true
   },
 ];

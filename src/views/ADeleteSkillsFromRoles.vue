@@ -2,7 +2,7 @@
   <NavBar/>
   <BackMiniNav message="Viewing Courses"/>
   <div class="container">
-    <h2 class="mt-2">Delete Skills from {{courseName}}</h2>
+    <h2 class="mt-2">Delete Skills from {{roleName}}</h2>
     <br>
       <div class="col-4">
         <div class="card shadow-sm">
@@ -11,7 +11,7 @@
             <form @submit.prevent = "onSubmit()" >
               <select class="form-select" aria-label="Default select example" v-model = "selectedSkill">
                   <option disabled>Select Skills Here</option>
-                  <option v-for="skill in availSkills" :key = skill.id :value = skill.id> {{skill.skill_name}} </option>
+                  <option v-for="skill in availSkills" :key = skill.id :value = skill.id>{{skill.skill_name}}</option>
                 </select>
               <p class = "d-flex justify-content-between" style = "padding-top:10px">
                 <input type="submit" class="btn btn-outline-primary btn-sm">
@@ -33,7 +33,7 @@ export default {
     NavBar,
     BackMiniNav,
   },
-  props: ['courseID', 'courseName'],
+  props: ['roleID', 'roleName'],
   data(){
     return{
       skills: null,
@@ -49,7 +49,7 @@ export default {
         alert("Please select something")
       } else{
         axios
-        .delete(`http://127.0.0.1:8000/api/v1/course/${this.courseID}/delete_skill/${this.selectedSkill}`)
+        .delete(`http://127.0.0.1:8000/api/v1/jobrole/${this.roleID}/delete_skill/${this.selectedSkill}`)
         .then(function(response){
           console.log(response)
           alert("Skill has been successfully deleted!");
@@ -65,7 +65,7 @@ export default {
   },
   mounted(){
     axios
-      .get(`http://127.0.0.1:8000/api/v1/course/${this.courseID}/all_skills/`)
+      .get(`http://127.0.0.1:8000/api/v1/jobrole/${this.roleID}/skills/`)
       .then(response => (this.skills = response.data))
   },
   computed: {
