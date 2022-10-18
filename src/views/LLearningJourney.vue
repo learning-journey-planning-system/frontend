@@ -8,7 +8,7 @@
       <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item" v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
           <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="'#panelsStayOpen-collapse'+learningjourney.id" aria-expanded="true" :aria-controls="'panelsStayOpen-collapse'+learningjourney.id">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" :data-bs-target="'#panelsStayOpen-collapse'+learningjourney.id" aria-expanded="true" :aria-controls="'panelsStayOpen-collapse'+learningjourney.id">
               <strong>Learning Journey {{this.staffLearningJourneys.indexOf(learningjourney)+1}}</strong>
             </button>
           </h2>
