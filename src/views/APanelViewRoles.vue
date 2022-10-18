@@ -41,7 +41,7 @@
             </span>
           </p>
           <p v-else>
-             No skills assigned for this course currently.
+             No skills assigned for this job role currently.
           </p>
       </div>
     </div>    
