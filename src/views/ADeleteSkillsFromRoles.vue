@@ -50,11 +50,11 @@ export default {
         alert("Please select something")
       } else{
         let promises = [];
-        let users = [];
+        let responses = [];
         for (let i = 0; i < this.selectedSkill.length; i++) {
           promises.push(
             axios.delete(`http://127.0.0.1:8000/api/v1/jobrole/${this.roleID}/delete_skill/${this.selectedSkill[i]}`).then(response => {
-              users.push(response);
+              responses.push(response);
             })
           )
         }
