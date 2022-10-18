@@ -9,8 +9,8 @@
             data-bs-toggle="dropdown" aria-expanded="false">Save</button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
-              <a class="dropdown-item" href="#" @click="addCourseToLJ(learningjourney.id, this.courseID)">
-                <MiniSaveButton v-show="isActive(learningjourney, this.courseID)"/> Learning Journey {{this.staffLearningJourneys.indexOf(learningjourney)+1}} -
+              <a class="dropdown-item" href="#" @click="putCourseToLJ(learningjourney,learningjourney.id, this.courseID)">
+                <MiniSaveButton v-show="isActive(learningjourney,this.courseID)"/> Learning Journey {{this.staffLearningJourneys.indexOf(learningjourney)+1}} -
                 {{learningjourney.jobrole.jobrole_name}}
               </a>
             </li>
@@ -91,31 +91,46 @@ export default {
       }
       return false
     },
-    addCourseToLJ(ljID, cID) {
+    putCourseToLJ(lj,ljID, cID) {
       // console.log("learning journey id", ljID)
       // console.log("course id", cID)
 
       // this.active = !this.active;
 
-      axios
-        .post(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/new_course/?course_id=${cID}`, {
+      // check if course is already in learning journey
+      if (this.isActive(lj,cID)) {
+        // course is in learning journey
+        // delete course
+        axios
+          .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/delete_course/${cID}`)
+          .then(function(){
+            alert("Course has been removed successfully from learning journey!");
+            window.location.reload();
+          })
 
-        })
-        .then(function () {
-          alert("Course has been successfully added!");
-          window.location.reload();
-          axios
-            .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
-            .then((response) => { console.log(response.data) })
-        })
-        .catch(function (error) {
-          if (error.response) {
-            alert(error.response.data.detail);
+      } else {
+        // course is not in learning journey
+        // add this course to this learning journey
+        axios
+          .post(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/new_course/?course_id=${cID}`, {
+
+          })
+          .then(function () {
+            alert("Course has been successfully added to learning journey!");
+            window.location.reload();
             axios
               .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
               .then((response) => { console.log(response.data) })
-          }
-        })
+          })
+          .catch(function (error) {
+            if (error.response) {
+              alert(error.response.data.detail);
+              axios
+                .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
+                .then((response) => { console.log(response.data) })
+            }
+          })
+      }
     }
   },
   mounted() {
