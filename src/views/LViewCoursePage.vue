@@ -74,7 +74,8 @@ export default {
       courseDetails: [],
       staffLearningJourneys: null,
       responseMessage: null,
-      active: null
+      allSkillsFromJobRole: null,
+      allCoursesFromJobRole: []
     }
   },
   created() {
@@ -95,41 +96,70 @@ export default {
       // console.log("learning journey id", ljID)
       // console.log("course id", cID)
 
-      // this.active = !this.active;
-
       // check if course is already in learning journey
       if (this.isActive(lj,cID)) {
-        // course is in learning journey
-        // delete course
+        // course is in learning journey --> delete course
         axios
           .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/delete_course/${cID}`)
           .then(function(){
+            console.log("stage 1");
             alert("Course has been removed successfully from learning journey!");
             window.location.reload();
           })
 
       } else {
         // course is not in learning journey
-        // add this course to this learning journey
-        axios
-          .post(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/new_course/?course_id=${cID}`, {
 
-          })
-          .then(function () {
-            alert("Course has been successfully added to learning journey!");
-            window.location.reload();
-            axios
-              .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
-              .then((response) => { console.log(response.data) })
-          })
-          .catch(function (error) {
-            if (error.response) {
-              alert(error.response.data.detail);
+        // check if course is applicable to learning journey - get all skills from jobrole_id
+        axios
+          .get(`http://127.0.0.1:8000/api/v1/jobrole/${lj.jobrole.id}/skills/`)
+          .then((response) => {
+            console.log("stage 2");
+            this.allSkillsFromJobRole = response.data;
+            // for each skill,
+            for (let i = 0; i < this.allSkillsFromJobRole.length; i++) {
+              var skillId = this.allSkillsFromJobRole[i].id
               axios
-                .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
-                .then((response) => { console.log(response.data) })
+                .get(`http://127.0.0.1:8000/api/v1/skill/${skillId}/courses/`)
+                .then((response) => {
+                  for (let j = 0; j < response.data.length; j++) {
+                    // push course id into allCoursesFromJobRole (whatever is being pushed is NOT soft deleted)
+                    this.allCoursesFromJobRole.push(response.data[j].id)
+                    }
+                  console.log("stage 2a",this.allCoursesFromJobRole)
+                  })
+                }
+            // check if course is applicable to learning journey - check if THIS COURSE user is trying to add is IN allCoursesFromJobRole
+            console.log(this.allCoursesFromJobRole)
+            if (this.allCoursesFromJobRole.includes(cID)) {
+              // add this course to this learning journey
+              axios
+                .post(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/new_course/?course_id=${cID}`, {
+
+                })
+                .then(function () {
+                  console.log("stage 3");
+                  alert("Course has been successfully added to learning journey!");
+                  window.location.reload();
+                  axios
+                    .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
+                    .then((response) => { console.log(response.data) })
+                })
+                .catch(function (error) {
+                  if (error.response) {
+                    alert(error.response.data.detail);
+                    axios
+                      .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
+                      .then((response) => {
+                        console.log("stage 4");
+                        console.log(response.data) })
+                  }
+                })
+            } else {
+              console.log("stage 5");
+              alert("This course cannot be added into this learning journey")
             }
-          })
+            })
       }
     }
   },
