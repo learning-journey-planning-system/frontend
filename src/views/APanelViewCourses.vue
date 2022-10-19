@@ -6,8 +6,8 @@
     <div class="card" style="width: 13rem;">
       <div class="card-body">
         <b>Legend: </b> 
-        <span class="text-success">Active</span> 
-        <span class="text-danger ms-1">Inactive</span>
+        <span class="text-success">Active Skill</span> 
+        <span class="text-danger ms-1">Deleted Skill</span>
       </div>
     </div>
     <br>
