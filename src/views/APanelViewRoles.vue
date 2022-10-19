@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class = "col-4">
-          <h5> Skills Assigned <button @click="deleteSkills([role.id, role.jobrole_name])" type="button" class="btn btn-sm btn-warning ms-2 mb-1">Delete Skills</button></h5>
+          <h5> Skills Assigned <button v-if="!role.deleted" @click="deleteSkills([role.id, role.jobrole_name])" type="button" class="btn btn-sm btn-warning ms-2 mb-1">Delete Skills</button></h5>
           <p v-if = "role.skills.length != 0"><span v-for="skill in role.skills" v-bind:key = skill.id> 
                <span v-if="skill.deleted == false"  style = "color:green">{{skill.skill_name}} <br></span>
                <span v-else style = "color:red">{{skill.skill_name}} <br> </span> 
@@ -124,7 +124,7 @@ created() {
   },
   mounted() {
   axios
-    .get('http://127.0.0.1:8000/api/v1/jobrole/available/')
+    .get('http://127.0.0.1:8000/api/v1/jobrole/')
     .then((response) => {this.roles = response.data;
       axios
         .get("http://127.0.0.1:8000/api/v1/skill/available/")
