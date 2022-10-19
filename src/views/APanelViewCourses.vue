@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class = "col-4">
-          <h5> Skills Assigned <button @click="deleteSkills([course.id, course.course_name])" type="button" class="btn btn-sm btn-warning ms-2 mb-1">Delete Skills</button></h5> 
+          <h5> Skills Assigned <button v-if="course.course_status == 'Active'" @click="deleteSkills([course.id, course.course_name])" type="button" class="btn btn-sm btn-warning ms-2 mb-1">Delete Skills</button></h5> 
           <p v-if = "course.skills.length != 0"><span v-for="skill in course.skills" v-bind:key = skill.id> 
                <span v-if="skill.deleted == false"  style = "color:green">{{skill.skill_name}} <br></span>
                <span v-else style = "color:red">{{skill.skill_name}} <br> </span> 
