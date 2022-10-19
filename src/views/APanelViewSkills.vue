@@ -17,7 +17,7 @@
             <h5 class="card-title">{{skill.skill_name}}</h5>
             <div class="d-flex justify-content-between align-items-center">
                 Skill ID: {{skill.id}}
-              <small class="text-muted"><button v-if="skill.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button> <button v-else disabled type="button" class="btn btn-outline-success">Active</button></small>
+              <small class="text-muted"><button v-if="skill.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button> <button v-else disabled type="button" class="btn btn-sm btn-outline-success">Active</button></small>
             </div>
             <a v-bind:href = skill.url>Edit</a>
             <br>

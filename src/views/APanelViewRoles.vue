@@ -3,6 +3,13 @@
   <BackMiniNav message="Admin Panel"/>
   <div class="container">
     <h2 class="mt-2">View Job Roles</h2>
+    <div class="card" style="width: 13rem;">
+      <div class="card-body">
+        <b>Legend: </b> 
+        <span class="text-success">Active</span> 
+        <span class="text-danger ms-1">Inactive</span>
+      </div>
+    </div>
     <div class = "row">
       <div class = "col" style = "text-align: right;">
         <button @click="() => togglePopup('buttonTrigger')" type="button" class="btn btn-outline-primary">Create New Job Role</button>
@@ -16,7 +23,7 @@
             <div class = "d-flex justify-content-between "> <h5 class="card-title">{{role.jobrole_name}}</h5> </div>
             <p class = "d-flex justify-content-between align-items-center">
                 Job Role ID: {{role.id}}
-              <small class="text-muted"><button v-if="role.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button> <button v-else disabled type="button" class="btn btn-outline-success">Active</button></small>
+              <small class="text-muted"><button v-if="role.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button> <button v-else disabled type="button" class="btn btn-sm btn-outline-success">Active</button></small>
             </p> 
             <br>
             <h6>Assign Skills</h6>

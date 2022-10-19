@@ -3,11 +3,13 @@
   <BackMiniNav message="Admin Panel"/>
   <div class="container">
     <h2 class="mt-2">View Courses</h2>
-    <!-- <div class = "row">
-      <div class = "col" style = "text-align: right;">
-        <button type="button" class="btn btn-outline-primary" >Create new Role</button>
+    <div class="card" style="width: 13rem;">
+      <div class="card-body">
+        <b>Legend: </b> 
+        <span class="text-success">Active</span> 
+        <span class="text-danger ms-1">Inactive</span>
       </div>
-    </div> -->
+    </div>
     <br>
     <div class="row"  v-for="course in courses"  :key=course.id style = "margin-bottom:10px;">
       <div class="col-4">
