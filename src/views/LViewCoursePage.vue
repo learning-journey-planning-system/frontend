@@ -9,8 +9,10 @@
             data-bs-toggle="dropdown" aria-expanded="false">Save</button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
-              <a class="dropdown-item" href="#" @click="putCourseToLJ(learningjourney,learningjourney.id, this.courseID)">
-                <MiniSaveButton v-show="isActive(learningjourney,this.courseID)"/> Learning Journey {{this.staffLearningJourneys.indexOf(learningjourney)+1}} -
+              <a class="dropdown-item" href="#"
+                @click="putCourseToLJ(learningjourney,learningjourney.id, this.courseID)">
+                <MiniSaveButton v-show="isActive(learningjourney,this.courseID)" /> Learning Journey
+                {{this.staffLearningJourneys.indexOf(learningjourney)+1}} -
                 {{learningjourney.jobrole.jobrole_name}}
               </a>
             </li>
@@ -74,15 +76,15 @@ export default {
       courseDetails: [],
       staffLearningJourneys: null,
       responseMessage: null,
-      allSkillsFromJobRole: null,
-      allCoursesFromJobRole: []
+      active: null,
+      allCoursesFromJobRole: [],
     }
   },
   created() {
     sessionStorage.setItem("previousPageTitle", "Course")
   },
   methods: {
-    isActive(lj,cID) {
+    isActive(lj, cID) {
       // var coursesForThisLJ = [];
       for (let i = 0; i < lj.courses.length; i++) {
         // coursesForThisLJ.push(lj.courses[i])
@@ -92,17 +94,19 @@ export default {
       }
       return false
     },
-    putCourseToLJ(lj,ljID, cID) {
+    putCourseToLJ(lj, ljID, cID) {
       // console.log("learning journey id", ljID)
       // console.log("course id", cID)
 
+      // this.active = !this.active;
+
       // check if course is already in learning journey
-      if (this.isActive(lj,cID)) {
-        // course is in learning journey --> delete course
+      if (this.isActive(lj, cID)) {
+        // course is in learning journey
+        // delete course
         axios
           .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/delete_course/${cID}`)
-          .then(function(){
-            console.log("stage 1");
+          .then(function () {
             alert("Course has been removed successfully from learning journey!");
             window.location.reload();
           })
@@ -110,27 +114,14 @@ export default {
       } else {
         // course is not in learning journey
 
-        // check if course is applicable to learning journey - get all skills from jobrole_id
         axios
-          .get(`http://127.0.0.1:8000/api/v1/jobrole/${lj.jobrole.id}/skills/`)
+          .get(`http://127.0.0.1:8000/api/v1/jobrole/${lj.jobrole.id}`)
           .then((response) => {
-            console.log("stage 2");
-            this.allSkillsFromJobRole = response.data;
-            // for each skill,
-            for (let i = 0; i < this.allSkillsFromJobRole.length; i++) {
-              var skillId = this.allSkillsFromJobRole[i].id
-              axios
-                .get(`http://127.0.0.1:8000/api/v1/skill/${skillId}/courses/`)
-                .then((response) => {
-                  for (let j = 0; j < response.data.length; j++) {
-                    // push course id into allCoursesFromJobRole (whatever is being pushed is NOT soft deleted)
-                    this.allCoursesFromJobRole.push(response.data[j].id)
-                    }
-                  console.log("stage 2a",this.allCoursesFromJobRole)
-                  })
-                }
-            // check if course is applicable to learning journey - check if THIS COURSE user is trying to add is IN allCoursesFromJobRole
-            console.log(this.allCoursesFromJobRole)
+            for (let i = 0; i < response.data.skills.length; i++) {
+              for (let j = 0; j < response.data.skills[i].courses.length; j++) {
+                this.allCoursesFromJobRole.push(response.data.skills[i].courses[j].id)
+              }
+            }
             if (this.allCoursesFromJobRole.includes(cID)) {
               // add this course to this learning journey
               axios
@@ -138,7 +129,6 @@ export default {
 
                 })
                 .then(function () {
-                  console.log("stage 3");
                   alert("Course has been successfully added to learning journey!");
                   window.location.reload();
                   axios
@@ -150,16 +140,13 @@ export default {
                     alert(error.response.data.detail);
                     axios
                       .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
-                      .then((response) => {
-                        console.log("stage 4");
-                        console.log(response.data) })
+                      .then((response) => { console.log(response.data) })
                   }
                 })
             } else {
-              console.log("stage 5");
-              alert("This course cannot be added into this learning journey")
+              alert("This course cannot be added to the learning journey")
             }
-            })
+          })
       }
     }
   },
