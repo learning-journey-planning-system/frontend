@@ -5,9 +5,9 @@
     <h2 class="mt-2">View Courses</h2>
     <div class="card" style="width: 13rem;">
       <div class="card-body">
-        <b>Legend: </b> 
-        <span class="text-success">Active Skill</span> 
-        <span class="text-danger ms-1">Deleted Skill</span>
+        <b>Legend (skills): </b> 
+        <span class="text-success">Active</span> 
+        <span class="text-danger ms-1">Deleted</span>
       </div>
     </div>
     <br>
