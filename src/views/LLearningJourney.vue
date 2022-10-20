@@ -89,7 +89,10 @@ export default {
   mounted() {
     axios
       .get(`http://127.0.0.1:8000/api/v1/staff/${sessionStorage.getItem('staffID')}/learningjourneys`)
-      .then(response => (this.staffLearningJourneys = response.data))
+      .then((response) => {
+        this.staffLearningJourneys = response.data;
+        console.log(this.staffLearningJourneys)
+      })
   }
   }
 </script>

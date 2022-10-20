@@ -3,28 +3,30 @@
   <BackMiniNav message="Skills" />
   <div class="container">
     <div class="row">
-      <h2 class="my-3">{{this.courseID}}: {{this.courseName}}
-        <div class="dropdown ms-2" style="display:inline-block;">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
-            data-bs-toggle="dropdown" aria-expanded="false">Save</button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
-              <a class="dropdown-item" href="#"
-                @click="putCourseToLJ(learningjourney,learningjourney.id, this.courseID)">
-                <MiniSaveButton v-show="isActive(learningjourney,this.courseID)" /> Learning Journey
-                {{this.staffLearningJourneys.indexOf(learningjourney)+1}} -
-                {{learningjourney.jobrole.jobrole_name}}
-              </a>
-            </li>
-            <!-- add a course to create a new learning journey -->
-            <li>
-              <a class="dropdown-item" href="#" @click="putCourseToLJ(learningjourney,learningjourney.id, this.courseID)">
-                <strong>+ Add course to create a new learning journey</strong>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </h2>
+
+      <div class="col">
+        <h2 class="my-3">{{this.courseID}}: {{this.courseName}}
+          <div class="dropdown ms-2" style="display:inline-block;">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">Save</button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
+                <a class="dropdown-item" href="#"
+                  @click="putCourseToLJ(learningjourney,learningjourney.id, this.courseID)">
+                  <MiniSaveButton v-show="isActive(learningjourney,this.courseID)" /> Learning Journey
+                  {{this.staffLearningJourneys.indexOf(learningjourney)+1}} -
+                  {{learningjourney.jobrole.jobrole_name}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </h2>
+      </div>
+
+      <CreateLearningJourney />
+    </div>
+
+    <div class="row">
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house"
           viewBox="0 0 16 16">
@@ -54,6 +56,7 @@
         {{this.courseDetails.course_desc}}
       </p>
     </div>
+
     <div class="row">
       <h4 class="my-3">Skills you will gain</h4>
     </div>
@@ -67,15 +70,17 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
-import MiniSaveButton from '../components/MiniSaveButton.vue'
+import MiniSaveButton from '../components/MiniSaveButton.vue';
+import CreateLearningJourney from '../components/CreateLearningJourney.vue';
 import axios from 'axios';
 
 export default {
   components: {
     NavBar,
     BackMiniNav,
-    MiniSaveButton
-  },
+    MiniSaveButton,
+    CreateLearningJourney
+},
   props: ['courseID', 'courseName'],
   data() {
     return {
@@ -129,6 +134,7 @@ export default {
                 this.allCoursesFromJobRole.push(response.data.skills[i].courses[j].id)
               }
             }
+            console.log(this.allCoursesFromJobRole)
             if (this.allCoursesFromJobRole.includes(cID)) {
               // add this course to this learning journey
               axios
@@ -164,7 +170,9 @@ export default {
         this.courseDetails = response.data;
         axios
           .get(`http://127.0.0.1:8000/api/v1/staff/${sessionStorage.getItem('staffID')}/learningjourneys`)
-          .then(response => { this.staffLearningJourneys = response.data })
+          .then((response) => {
+            this.staffLearningJourneys = response.data;
+          })
       })
   }
 }

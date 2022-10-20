@@ -80,6 +80,7 @@ export default {
     sendData(courseDetails) {
       if (courseDetails[1] != 'Inactive') {
         this.$router.push({ name:'LViewCoursePage', params: {courseID: courseDetails[0], courseName: courseDetails[2]} });
+        sessionStorage.setItem("courseID", courseDetails[0])
       }
     },
     // addCourseToLJ(neil){
@@ -97,8 +98,10 @@ export default {
   },
   mounted() {
     axios
-      .get(`http://127.0.0.1:8000/api/v1/jobrole/${this.roleID}/skills/`)
-      .then(response => (this.jobroleskills = response.data))
+      .get(`http://127.0.0.1:8000/api/v1/jobrole/${this.roleID}/available_skills/`)
+      .then((response) => {
+        this.jobroleskills = response.data;
+      })
   }
 }
 </script>
