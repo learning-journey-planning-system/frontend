@@ -58,7 +58,7 @@ export default {
             })
           )
         }
-        Promise.all(promises).then(alert("Skill has been successfully deleted!"));
+        Promise.all(promises).then(alert("Skill(s) have been successfully deleted!"));
         window.location.reload()
       }
     },
