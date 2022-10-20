@@ -70,6 +70,11 @@ export default {
   },
   methods:{
     onSubmit(courseid){
+      var specifiedCourse = this.courses.find(x   => x.id === courseid)
+      if(specifiedCourse.course_status != "Active"){
+        alert("This course is inactive, you cannot assign skills to inactive courses. ")
+      }
+      else{
       const target_copy = Object.assign({}, this.skillchoices);
       if(target_copy[0] == "Empty"){
         alert("Please select something")
@@ -81,23 +86,40 @@ export default {
         }
         console.log("Course ID: " + courseid)
         console.log(arrayOfSkills)
-        for(i = 0; i < arrayOfSkills.length ; i ++){
-          axios
-          .post("http://127.0.0.1:8000/api/v1/course/"+ courseid + "/new_skill/?skill_id=" + arrayOfSkills[i])
+        axios
+          .post("http://127.0.0.1:8000/api/v1/course/"+ courseid + "/new_skills/" , arrayOfSkills) 
           .then(function(response){
-            console.log(response.data)
-            alert("Skill has been successfully added!");
-          })
-          .catch(function(error){
-            if(error.response){
-              alert(error.response.data.detail);
+            var data = response.data
+            if(data[0].length == 0 & data[1].length == 0){
+              if(alert("Skills has been successfully added")){
+                return
+              }
+              else{
+                window.location.reload(); 
+              }
+            }
+            else{
+              if(data[1].length == arrayOfSkills.length){
+               if(alert("Skill(s): " + data[1].join(", ") + " cannot be added as they have already been previously added to the course.")){
+                return
+               }
+               else{
+                window.location.reload(); 
+               }
+              }
+              else{
+                if(alert("Skill(s):  " + data[1].join(", ") + " cannot be added as they have already been previously added to the course. However, the remaining skill(s) have been successfully added.")){
+                  return
+                }
+                else{
+                  window.location.reload(); 
+                }
+              }
             }
           })
-        }
-        window.location.reload()
       }
       this.skillchoices = [];
-    },
+    }},
     deleteSkills(courseDetails){
       // console.log(courseID)
       this.$router.push({name:'ADeleteSkillsFromCourses', params: {courseID: courseDetails[0], courseName: courseDetails[1]}});  
