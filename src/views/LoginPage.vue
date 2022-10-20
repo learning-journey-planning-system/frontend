@@ -10,7 +10,7 @@
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Learner</button>
         <ul class="dropdown-menu">
-          <li v-for="staff in staffs" :key=staff.id @click="isLearner(staff.staff_fname, staff.id)"><a v-if="staff.role_id==2 || staff.role_id==3" class="dropdown-item" href="#">{{staff.staff_fname}} {{staff.staff_lname}} ({{staff.id}})</a></li>
+          <li v-for="staff in staffs" :key=staff.id @click="isLearner(staff.staff_fname, staff.id)"><a v-if="staff.role_id==2 || staff.role_id==3 || staff.role_id==4" class="dropdown-item" href="#">{{staff.staff_fname}} {{staff.staff_lname}} ({{staff.id}})</a></li>
         </ul>
       </div>
       <div class="btn-group">
