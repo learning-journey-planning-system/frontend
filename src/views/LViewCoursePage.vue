@@ -16,6 +16,12 @@
                 {{learningjourney.jobrole.jobrole_name}}
               </a>
             </li>
+            <!-- add a course to create a new learning journey -->
+            <li>
+              <a class="dropdown-item" href="#" @click="putCourseToLJ(learningjourney,learningjourney.id, this.courseID)">
+                <strong>+ Add course to create a new learning journey</strong>
+              </a>
+            </li>
           </ul>
         </div>
       </h2>
