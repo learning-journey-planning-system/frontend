@@ -103,17 +103,18 @@ export default {
       // check if course is already in learning journey
       if (this.isActive(lj, cID)) {
         // course is in learning journey
-        // delete course
-        axios
-          .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/delete_course/${cID}`)
-          .then(function () {
-            alert("Course has been removed successfully from learning journey!");
-            window.location.reload();
-          })
+        // double check if user wants to delete course
+        if (confirm("Please CONFIRM that you would like to delete this course from your learning journey.")) {
+          axios
+            .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/delete_course/${cID}`)
+            .then(function () {
+              alert("Course is successfully DELETED from this learning journey!")
+              window.location.reload();
+            })
+        }
 
       } else {
         // course is not in learning journey
-
         axios
           .get(`http://127.0.0.1:8000/api/v1/jobrole/${lj.jobrole.id}`)
           .then((response) => {
@@ -129,7 +130,7 @@ export default {
 
                 })
                 .then(function () {
-                  alert("Course has been successfully added to learning journey!");
+                  alert("Course is successfully ADDED to learning journey!");
                   window.location.reload();
                   axios
                     .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
