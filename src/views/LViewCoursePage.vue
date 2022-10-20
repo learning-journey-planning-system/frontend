@@ -104,7 +104,7 @@ export default {
       if (this.isActive(lj, cID)) {
         // course is in learning journey
         // double check if user wants to delete course
-        if (confirm("Please CONFIRM that you would like to delete this course from your learning journey!")) {
+        if (confirm("Please CONFIRM that you would like to delete this course from your learning journey.")) {
           axios
             .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/delete_course/${cID}`)
             .then(function () {
