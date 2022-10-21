@@ -99,9 +99,7 @@ export default {
   mounted() {
     axios
       .get(`http://127.0.0.1:8000/api/v1/jobrole/${this.roleID}/available_skills/`)
-      .then((response) => {
-        this.jobroleskills = response.data;
-      })
+      .then(response => (this.jobroleskills = response.data))
   }
 }
 </script>
