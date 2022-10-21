@@ -56,9 +56,26 @@ export default {
           jobrole_id: this.selected
         })
         .then(function (response) {
-          console.log(response)
-          alert("New learning journey is created successfully!");
-          window.location.reload()
+          var ljID = response.data.id;
+          var cID = sessionStorage.getItem("courseID")
+          axios
+            .post(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/new_course/?course_id=${cID}`)
+            .then(function () {
+              alert("Course is successfully ADDED to learning journey!");
+              window.location.reload();
+              axios
+                .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
+                .then((response) => { console.log(response.data) })
+            })
+            .catch(function (error) {
+              if (error.response) {
+                alert(error.response.data.detail);
+                axios
+                  .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
+                  .then((response) => { console.log(response.data) })
+              }
+            })
+          // window.location.reload()
         })
         .catch(function (error) {
           if (error.response) {

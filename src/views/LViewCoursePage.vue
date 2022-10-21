@@ -138,9 +138,7 @@ export default {
             if (this.allCoursesFromJobRole.includes(cID)) {
               // add this course to this learning journey
               axios
-                .post(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/new_course/?course_id=${cID}`, {
-
-                })
+                .post(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/new_course/?course_id=${cID}`)
                 .then(function () {
                   alert("Course is successfully ADDED to learning journey!");
                   window.location.reload();
