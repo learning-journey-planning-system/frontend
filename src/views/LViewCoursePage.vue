@@ -118,9 +118,18 @@ export default {
         if (confirm("Please CONFIRM that you would like to delete this course from your learning journey.")) {
           axios
             .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}/delete_course/${cID}`)
-            .then(function () {
+            .then((response) => {
               alert("Course is successfully DELETED from this learning journey!")
-              window.location.reload();
+
+              // checks if this course is the LAST course in learning journey, if it is --> remove entire learning journey
+              if (response.data.courses.length == 0) {
+                axios
+                  .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
+                  .then(() => {
+                    alert("Learning Journey for " + lj.jobrole.jobrole_name + " has been deleted")
+                    window.location.reload();
+                  })
+              }
             })
         }
 
