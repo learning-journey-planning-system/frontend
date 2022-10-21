@@ -8,7 +8,7 @@
         <h2 class="my-3">{{this.courseID}}: {{this.courseName}}
           <div class="dropdown ms-2" style="display:inline-block;">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
-              data-bs-toggle="dropdown" aria-expanded="false">Save</button>
+              data-bs-toggle="dropdown" aria-expanded="false">Save to Existing Learning Journeys</button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li v-for="learningjourney in this.staffLearningJourneys" :key="learningjourney">
                 <a class="dropdown-item" href="#"
@@ -61,8 +61,9 @@
       <h4 class="my-3">Skills you will gain</h4>
     </div>
     <div class="row ps-2">
-      <button v-for="skill in courseDetails.skills" :key=skill.id class="btn btn-outline-success me-3 my-2"
-        type="button" style="width:150px; height: 65px;">{{skill.skill_name}}</button>
+      <button v-for="skill in courseDetails.skills" :key=skill.id v-bind:class=indicateStatus(skill.deleted) type="button" style="width:150px; height: 65px;">
+        {{skill.skill_name}}
+      </button>
     </div>
   </div>
 </template>
@@ -95,6 +96,13 @@ export default {
     sessionStorage.setItem("previousPageTitle", "Course")
   },
   methods: {
+    indicateStatus(isDeleted) {
+      if (isDeleted) {
+        return "btn btn-outline-danger me-3 my-2"
+      } else {
+        return "btn btn-outline-success me-3 my-2"
+      }
+    },
     isActive(lj, cID) {
       // var coursesForThisLJ = [];
       for (let i = 0; i < lj.courses.length; i++) {
