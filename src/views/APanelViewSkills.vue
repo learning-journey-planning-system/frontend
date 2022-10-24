@@ -12,14 +12,17 @@
     <br>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <div class="col" v-for="skill in skills"  :key=skill.id>
-        <div class="card shadow-sm" style="height: 7rem;">
+        <div class="card shadow-sm" style="height: 8rem;">
           <div class="card-body" style = "padding-bottom:5px;">
             <h5 class="card-title">{{skill.skill_name}}</h5>
             <div class="d-flex justify-content-between align-items-center">
                 Skill ID: {{skill.id}}
               <small class="text-muted"><button v-if="skill.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button> <button v-else disabled type="button" class="btn btn-sm btn-outline-success">Active</button></small>
             </div>
-            <a v-bind:href = skill.url>Edit</a>
+            <div class="d-flex justify-content-between align-items-center mt-3 me-1 ">
+            <small class="text-muted">Edit</small>
+              <small class="text-muted"><div v-if="skill.deleted != true" @click="deleteSkill(skill.id)" style="cursor: default;" class="text-danger">Delete</div></small>
+            </div>
             <br>
           </div>
         </div>
@@ -60,15 +63,25 @@ export default {
       skills: null,
     }
   },
-created() {
-  sessionStorage.setItem("previousPageTitle", "View Skills")
-},
-mounted(){
-  axios
-      .get("http://127.0.0.1:8000/api/v1/skill/")
-      .then((response) => {
-        this.skills = response.data;
-      })
+  created() {
+    sessionStorage.setItem("previousPageTitle", "View Skills")
+  },
+  mounted(){
+    axios
+        .get("http://127.0.0.1:8000/api/v1/skill/")
+        .then((response) => {
+          this.skills = response.data;
+        })
+  },
+  methods: {
+    deleteSkill(skillID){
+      axios
+        .delete(`http://127.0.0.1:8000/api/v1/skill/${skillID}`)
+        .then(() => {
+          alert("Skill has been successfully soft-deleted!")
+          window.location.reload()
+        })
+    }
   }
 }
 </script>
