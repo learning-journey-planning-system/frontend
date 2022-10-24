@@ -20,7 +20,7 @@
               <small class="text-muted"><button v-if="skill.deleted == true" type="button" class="btn btn-sm btn-outline-danger disabled">Deleted</button> <button v-else disabled type="button" class="btn btn-sm btn-outline-success">Active</button></small>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-3 me-1 ">
-            <small class="text-muted">Edit</small>
+            <small @click="editSkills([skill.id, skill.skill_name])" class="text-muted" v-if="skill.deleted != true">Edit</small>
               <small class="text-muted"><div v-if="skill.deleted != true" @click="deleteSkill(skill.id)" style="cursor: default;" class="text-danger">Delete</div></small>
             </div>
             <br>
@@ -55,7 +55,7 @@ export default {
     return {
       CreateSkill,
       popupTriggers,
-      togglePopup
+      togglePopup,
     }
   },
   data(){
@@ -81,6 +81,9 @@ export default {
           alert("Skill has been successfully soft-deleted!")
           window.location.reload()
         })
+    },
+    editSkills(skillDetails){
+      this.$router.push({name:'AEditSkillsfromSkills', params: {skillID: skillDetails[0], skillName: skillDetails[1]}});
     }
   }
 }
