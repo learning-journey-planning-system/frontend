@@ -123,7 +123,7 @@ export default {
         for (let i = 0; i < this.staffLearningJourneys.length; i++) {
           this.staffExistingJobRolesInLJs.push(this.staffLearningJourneys[i].jobrole_id)
         }
-        console.log("job roles in learning journeys: ", this.staffExistingJobRolesInLJs)
+        // console.log("job roles in learning journeys: ", this.staffExistingJobRolesInLJs)
         axios
           .get("http://127.0.0.1:8000/api/v1/jobrole/available/")
           .then((response) => {
@@ -133,14 +133,14 @@ export default {
 
               }
             }
-            console.log("original available job roles NOT in user's learning journeys",this.allAvailableJobRoles)
+            // console.log("original available job roles NOT in user's learning journeys",this.allAvailableJobRoles)
             for (let i = 0; i < this.allAvailableJobRoles.length; i++) {
               this.isCourseApplicableForJobRole(sessionStorage.getItem("courseID"),this.allAvailableJobRoles[i])
 
             }
 
           })
-          console.log("all job roles that this user can pick from: ",this.allAvailableJobRoles)
+          // console.log("all job roles that this user can pick from: ",this.allAvailableJobRoles)
       })
   }
 
