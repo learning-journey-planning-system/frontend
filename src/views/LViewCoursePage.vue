@@ -61,9 +61,10 @@
       <h4 class="my-3">Skills you will gain</h4>
     </div>
     <div class="row ps-2">
-      <button v-for="skill in courseDetails.skills" :key=skill.id v-bind:class=indicateStatus(skill.deleted) type="button" style="width:150px; height: 65px;">
+      <button v-for="skill in this.courseDetails.skills" :key=skill.id :class=indicateStatus(skill.deleted) v-show=toShow(skill.deleted) type="button" style="width:150px; height: 65px;">
         {{skill.skill_name}}
       </button>
+      <!-- <button v-for="skill in allAvailableSkills" :key=skill.id>{{skill}}</button> -->
     </div>
   </div>
 </template>
@@ -96,6 +97,12 @@ export default {
     sessionStorage.setItem("previousPageTitle", "Course")
   },
   methods: {
+    toShow(isDeleted) {
+      if (sessionStorage.getItem("staffType") == "Learner" && isDeleted) {
+        return false
+      }
+      return true
+    },
     indicateStatus(isDeleted) {
       if (isDeleted) {
         return "btn btn-outline-danger me-3 my-2"

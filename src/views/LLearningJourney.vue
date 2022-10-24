@@ -17,7 +17,7 @@
               <div class="container">
                 <h4 class="mt-1 mb-4">{{learningjourney.jobrole.jobrole_name}}</h4>
                 <!-- display all skills for this learning journey -->
-                <button v-for="skill in allSkills(learningjourney)" :key="skill" v-bind:class=indicateStatus(skill.deleted) type="button" style="width:150px; height: 65px;">{{skill.skill_name}}</button>
+                <button v-for="skill in allSkills(learningjourney)" :key="skill" :class=indicateStatus(skill.deleted) v-show=toShow(skill.deleted) type="button" style="width:150px; height: 65px;">{{skill.skill_name}}</button>
 
                 <!-- display all courses for this learning journey -->
                   <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-3 mt-3">
@@ -61,6 +61,12 @@ export default {
     }
   },
   methods:{
+    toShow(isDeleted) {
+      if (sessionStorage.getItem("staffType") == "Learner" && isDeleted) {
+        return false
+      }
+      return true
+    },
     indicateStatus(isDeleted) {
       if (isDeleted) {
         return "btn btn-outline-danger me-3 my-2"
