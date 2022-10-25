@@ -10,12 +10,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li v-if="stafftype == 'Admin'" class="nav-item">
             <a class="nav-link"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'LHomePage'}">Back to LJPS</router-link></a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">Back to LMS</a>
-          </li>
+          </li> -->
           <li v-if="stafftype == 'Admin'" class="nav-item">
             <a class="nav-link" href="#"><router-link style="text-decoration: none; color: inherit;" :to="{name: 'APanelHome'}">Admin Panel</router-link></a>
           </li>
