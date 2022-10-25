@@ -23,12 +23,21 @@
           <div :id="'panelsStayOpen-collapse'+learningjourney.id" class="accordion-collapse collapse">
             <div class="accordion-body">
               <div class="container">
-                <h4 class="mt-1 mb-4">
-                  {{learningjourney.jobrole.jobrole_name}}
-                  <a href="" class="link-primary" @click="sendRoleData([learningjourney.jobrole.id, learningjourney.jobrole.deleted, learningjourney.jobrole.jobrole_name])">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
-                  </a>
-                </h4>
+                <div class="row">
+                  <div class="col">
+                    <h4 class="mt-1 mb-4">
+                      {{learningjourney.jobrole.jobrole_name}}
+                      <a href="" class="link-primary" @click="sendRoleData([learningjourney.jobrole.id, learningjourney.jobrole.deleted, learningjourney.jobrole.jobrole_name])">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+                      </a>
+                    </h4>
+                  </div>
+
+                  <div class="col align-self-center" style="text-align: right;">
+                    <button @click="deleteLearningJourney(learningjourney.id, learningjourney.jobrole.jobrole_name)" type="button" class="btn btn-danger btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill mb-1 me-1" viewBox="0 0 16 16"><path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/></svg>Delete Learning Journey</button>
+                  </div>
+
+                </div>
                 <!-- display all skills for this learning journey -->
                 <button v-for="skill in allSkills(learningjourney)" :key="skill" :class=indicateStatus(skill.deleted) v-show=toShow(skill.deleted) type="button" style="width:150px; height: 65px;">{{skill.skill_name}}</button>
 
@@ -121,6 +130,14 @@ export default {
         }
         window.location.reload();
         alert("All learning journeys are successfully deleted!")
+      }
+    },
+    deleteLearningJourney(ljID,ljName) {
+      if (confirm("Progress for THIS learning journey will be PERMANENTLY DELETED\nDo you still wish to proceed?")) {
+        axios
+          .delete(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
+        window.location.reload();
+        alert(`Learning journey for ${ljName} is successfully deleted!`)
       }
     }
   },
