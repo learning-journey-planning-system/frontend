@@ -8,7 +8,7 @@
     <li><a href="#about">About</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <li><a href="#Note">Note</a></li>
+      <ul><li><a href="#Note">Note</a></li></ul>
     </li>
     <li><a href="#feature-development-workflow">Feature Development Workflow</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
