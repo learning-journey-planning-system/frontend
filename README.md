@@ -16,7 +16,7 @@
 </details>
 
 <!-- WORKFLOW STATUS -->
-[![GitHub Super-Linter](https://github.com/learning-journey-planning-system/frontend/workflows/frontend.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Frontend CI](https://github.com/cherylperyl/learning-journey-planning-system/frontend/workflows/frontend.yml/badge.svg)](https://github.com/cherylperyl/learning-journey-planning-system/frontend/workflows/actions)
 
 <!-- ABOUT THE PROJECT -->
 ## About
