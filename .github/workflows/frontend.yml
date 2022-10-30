@@ -1,4 +1,4 @@
-name: LJPS Frontend Workflow
+name: LJPS Frontend Workflow (Update)
 
 on:
   push:
