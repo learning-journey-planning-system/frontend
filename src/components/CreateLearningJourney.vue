@@ -40,7 +40,7 @@ export default {
   name: 'CreateLearningJourney',
   data(){
     return {
-      allAvailableJobRole: [],
+      allAvailableJobRoles: [],
       allAvailableJobRolesForCourses: [],
       staffLearningJourneys: null,
       staffExistingJobRolesInLJs: [],
