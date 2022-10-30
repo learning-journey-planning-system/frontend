@@ -1,9 +1,9 @@
-name: LJPS Frontend CI
+name: Lint code base
 
 on: push
 
 jobs:
-  sample-ci:
+  frontendCI:
     name: Lint code base
     runs-on: ubuntu-latest
     steps:
