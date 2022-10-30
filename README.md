@@ -15,9 +15,6 @@
   </ol>
 </details>
 
-<!-- WORKFLOW STATUS -->
-[![Frontend CI](https://github.com/cherylperyl/learning-journey-planning-system/frontend/workflows/frontend.yml/badge.svg)](https://github.com/cherylperyl/learning-journey-planning-system/frontend/workflows/actions)
-
 <!-- ABOUT THE PROJECT -->
 ## About
 This is the source code for the Learning Journey Planning System by All-in-One. This service is built on <a href="https://vuejs.org/guide/introduction.html"><img src="https://www.kylontyner.com/_nuxt/uploads/b18740e-640.png" alt="Vue.js" width="88"/></a>
