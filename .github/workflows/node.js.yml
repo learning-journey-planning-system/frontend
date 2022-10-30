@@ -17,39 +17,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.16.0]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v3
-    
-    - name: Run a one-line script
-      run: echo ✨✨✨ Puking 🌈Rainbows🌈 and 🦄Unicorns🦄 ✨✨✨
-      
-    - name: Run a multi-line script
-      run: 
-        echo 🐳🐳 Kidding okay let's get serious 🐳🐳
-        echo 🐳🐳 Okay, Let's Start!!!! 🐳🐳
         
-    - name: Setup node.js environment for ${{ matrix.node_version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node_version }}
-    
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       uses: actions/setup-node@v3
+    - name: Setup node.js environment
+      uses: actions/setup-node@v3
       
     - name: Run npm install
       run: npm install
     
     - name: Run npm build
-      run: npm run build --if-present
-    
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'npm'
-#     - run: npm ci
-#     - run: npm run build --if-present
-#     - run: npm test
+      run: npm run build
