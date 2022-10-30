@@ -1,4 +1,5 @@
 # frontend
+
 [![LJPS Frontend Workflow](https://github.com/learning-journey-planning-system/frontend/actions/workflows/frontend.yml/badge.svg)](https://github.com/learning-journey-planning-system/frontend/actions/workflows/frontend.yml)
 
 <!-- TABLE OF CONTENTS -->
