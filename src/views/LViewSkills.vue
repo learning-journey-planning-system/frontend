@@ -31,6 +31,7 @@
               <h5 class="card-title mb-4">{{ course.course_name }}</h5>
               <p>Type: {{ course.course_type }}</p>
               <p>Category: {{ course.course_category }}</p>
+              <CompletionStatusButton />
               <!-- <div class="d-flex justify-content-between align-items-center"> -->
                 <!-- <a :href="'#'+course.id" @click.stop="addCourseToLJ()" :class=dynamicButton>{{saveStatus}}</a> -->
                     <!-- <button @click="addCourseToLJ()" type="button" :class="dynamicButton">{{saveStatus}}</button> -->
@@ -49,12 +50,14 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
+import CompletionStatusButton from '../components/CompletionStatusButton.vue'
 import axios from 'axios';
 
 export default {
   components: {
     NavBar,
     BackMiniNav,
+    CompletionStatusButton
   },
   props: ['roleID','rolename'],
   data(){

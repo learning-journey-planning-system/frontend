@@ -27,6 +27,12 @@
     </div>
 
     <div class="row">
+      <div class="col">
+        <CompletionStatusButton />
+      </div>
+    </div>
+
+    <div class="row">
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house"
           viewBox="0 0 16 16">
@@ -74,6 +80,7 @@ import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
 import MiniSaveButton from '../components/MiniSaveButton.vue';
 import CreateLearningJourney from '../components/CreateLearningJourney.vue';
+import CompletionStatusButton from '../components/CompletionStatusButton.vue';
 import axios from 'axios';
 
 export default {
@@ -81,7 +88,8 @@ export default {
     NavBar,
     BackMiniNav,
     MiniSaveButton,
-    CreateLearningJourney
+    CreateLearningJourney,
+    CompletionStatusButton
 },
   props: ['courseID', 'courseName'],
   data() {

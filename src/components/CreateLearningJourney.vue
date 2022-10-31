@@ -65,14 +65,14 @@ export default {
               window.location.reload();
               axios
                 .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
-                .then((response) => { console.log(response.data) })
+                // .then((response) => { console.log(response.data) })
             })
             .catch(function (error) {
               if (error.response) {
                 alert(error.response.data.detail);
                 axios
                   .get(`http://127.0.0.1:8000/api/v1/learningjourney/${ljID}`)
-                  .then((response) => { console.log(response.data) })
+                  // .then((response) => { console.log(response.data) })
               }
             })
           // window.location.reload()
@@ -85,8 +85,8 @@ export default {
     },
     isCourseApplicableForJobRole(cID, jobRole){
       // var allCoursesFromJobRole = [];
-      console.log("course id: ", cID);
-      console.log("job role: ", jobRole)
+      // console.log("course id: ", cID);
+      // console.log("job role: ", jobRole)
       var activeSkillsForCourse = [];
       var activeSkillsForJobRole = [];
 
