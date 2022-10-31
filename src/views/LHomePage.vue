@@ -52,11 +52,15 @@ export default {
   methods: {
     sendData(roleDetails) {
       if(roleDetails[1] != 'true'){
+        sessionStorage.setItem("jobroleID", roleDetails[0])
         this.$router.push({name:'LViewSkills', params: {roleID: roleDetails[0], rolename: roleDetails[2]}}); 
       }
     },
   },
   mounted() {
+    if(sessionStorage.getItem("jobroleID") != null){
+      sessionStorage.removeItem("jobroleID")
+    }
     axios
     .get('http://127.0.0.1:8000/api/v1/jobrole/available/')
     .then(response => (this.roles = response.data))
