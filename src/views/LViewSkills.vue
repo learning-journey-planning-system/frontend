@@ -8,15 +8,18 @@
         <h2 class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
           <span class="fs-2">{{this.rolename}}</span>
         </h2>
-        <p>Browse skills & courses</p>
+        <p>Browse skills & courses <br><i><span style = "font-size:12px"> Note : Skills that are labelled green are skills you have already acquired </span> </i> </p>
     </div>
     <!-- skill side bar and courses section -->
     <div class="row">
       <!-- skill side bar -->
       <div class="col-3">
         <ul class="nav flex-column" v-for="jobroleskill in jobroleskills" :key=jobroleskill.id>
-          <li class="nav-item mb-3">
+          <li class="nav-item mb-3" v-if="acquiredskills.includes(jobroleskill.skill_name) == false">
             <button @click="loadCourses(jobroleskill.id)" type="button" class="skillButton btn btn-outline-secondary">{{jobroleskill.skill_name}}</button>
+          </li>
+          <li class="nav-item mb-3"  v-else>
+            <button @click="loadCourses(jobroleskill.id)" type="button" class="skillButton btn btn-success">{{jobroleskill.skill_name}}</button>
           </li>
         </ul>
       </div>
@@ -60,6 +63,7 @@ export default {
       roleName: String,
       courses: null,
       skillID: String,
+      acquiredskills : [],
       // dynamicButton: "btn btn-success",
       // saveStatus: "Save"
     }
@@ -100,6 +104,20 @@ export default {
     axios
       .get(`http://127.0.0.1:8000/api/v1/jobrole/${this.roleID}/available_skills/`)
       .then(response => (this.jobroleskills = response.data))
+
+      var staffID = sessionStorage.getItem("staffID")
+      var jobroleID = sessionStorage.getItem("jobroleID")
+
+      axios
+        .get("http://127.0.0.1:8000/api/v1/staff/" + staffID + "/jobrole/" + jobroleID + "/acquired_skills")
+        .then(response =>{
+          for(var x of response.data){
+            this.acquiredskills.push(x.skill_name)
+          }
+          console.log(this.jobroleskills)
+          console.log(this.acquiredskills)
+        })
+
   }
 }
 </script>
