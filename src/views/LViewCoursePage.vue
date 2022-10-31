@@ -80,7 +80,7 @@ import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
 import MiniSaveButton from '../components/MiniSaveButton.vue';
 import CreateLearningJourney from '../components/CreateLearningJourney.vue';
-import CompletionStatusButton from '../components/CompletionStatusButton.vue';
+import CompletionStatusButton from '../components/CompletionStatusButton.vue'
 import axios from 'axios';
 
 export default {
