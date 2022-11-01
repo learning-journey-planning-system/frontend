@@ -36,7 +36,7 @@
               <p class = "d-flex justify-content-between" style = "padding-top:10px">
                 <input type="submit" class="btn btn-outline-primary btn-sm">
                 <small class="text-muted"><div v-if="!role.deleted" @click="deleteJobRole(role.id)" style="cursor: default;" class="text-danger">Delete Job Role</div></small>
-                <input type="submit" class="btn btn-outline-primary btn-sm"> <small @click="editJob([role.id, role.jobrole_name])" class="text-muted" v-if="role.deleted != true">Edit</small>
+                 <small @click="editJob([role.id, role.jobrole_name])" class="text-muted" v-if="role.deleted != true">Edit Job Role</small>
               </p>
             </form>
           </div>
