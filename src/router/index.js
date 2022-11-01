@@ -11,6 +11,7 @@ import LLearningJourney from '../views/LLearningJourney.vue'
 import ADeleteSkillsFromCourses from '../views/ADeleteSkillsFromCourses.vue'
 import ADeleteSkillsFromRoles from '../views/ADeleteSkillsFromRoles.vue'
 import AEditSkillsfromSkills from '../views/AEditSkillsfromSkills.vue'
+import AEditJobRolesfromJob from '../views/AEditJobRolesfromJob.vue'
 
 
 const routes = [
@@ -81,6 +82,14 @@ const routes = [
     path: "/AEditSkillsfromSkills/:skillID/:skillName",
     name: "AEditSkillsfromSkills",
     component: AEditSkillsfromSkills,
+    props: true
+  },
+
+
+  {
+    path: "/AEditJobRolesfromJob/:jobID/:jobName",
+    name: "AEditJobRolesfromJob",
+    component: AEditJobRolesfromJob,
     props: true
   },
 ];

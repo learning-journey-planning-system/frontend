@@ -34,7 +34,7 @@
                 </select>
             
               <p class = "d-flex justify-content-between" style = "padding-top:10px">
-                <input type="submit" class="btn btn-outline-primary btn-sm">
+                <input type="submit" class="btn btn-outline-primary btn-sm"> <small @click="editJob([role.id, role.jobrole_name])" class="text-muted" v-if="role.deleted != true">Edit</small>
               </p>
             </form>
           </div>
@@ -148,10 +148,18 @@ created() {
     deleteSkills(roleDetails){
       // console.log(roleDetails)
       this.$router.push({name:'ADeleteSkillsFromRoles', params: {roleID: roleDetails[0], roleName: roleDetails[1]}}); 
+    },
+
+    editJob(jobDetails){
+      sessionStorage.setItem("jobroleID", jobDetails[0])
+      sessionStorage.setItem("jobRoleName", jobDetails[1])
+      this.$router.push({name:'AEditJobRolesfromJob', params: {jobID: jobDetails[0], jobName: jobDetails[1]}});
     }
 
   },
   mounted() {
+  sessionStorage.removeItem("jobroleID")
+  sessionStorage.removeItem("jobRoleName")
   axios
     .get('http://127.0.0.1:8000/api/v1/jobrole/')
     .then((response) => {this.roles = response.data;
