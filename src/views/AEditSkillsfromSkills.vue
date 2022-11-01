@@ -11,7 +11,7 @@
             Please capitalize the first letter of each word
           </div>
         </div>
-        <button @click="editSkills()" type="button" class="btn btn-success mt-2">Submit</button>
+        <button @click="submitSkill()" type="button" class="btn btn-success mt-2">Submit</button>
       </form>
   </div>
 </template>
@@ -41,6 +41,14 @@ export default {
     })
   },
   methods:{
+    submitSkill(){
+      if (this.editedSkillName.length > 30){
+        alert("Please enter a skill name that is 30 characters or less")
+      }
+      else{
+        this.editSkills()
+      }
+    },
       editSkills(){
         if(!this.allSkills.includes(this.editedSkillName)){
           axios

@@ -34,6 +34,8 @@
                 </select>
             
               <p class = "d-flex justify-content-between" style = "padding-top:10px">
+                <input type="submit" class="btn btn-outline-primary btn-sm">
+                <small class="text-muted"><div v-if="!role.deleted" @click="deleteJobRole(role.id)" style="cursor: default;" class="text-danger">Delete Job Role</div></small>
                 <input type="submit" class="btn btn-outline-primary btn-sm"> <small @click="editJob([role.id, role.jobrole_name])" class="text-muted" v-if="role.deleted != true">Edit</small>
               </p>
             </form>
@@ -94,6 +96,14 @@ created() {
   sessionStorage.setItem("previousPageTitle", "View Job Roles")
 },
   methods:{
+    deleteJobRole(roleID){
+      axios
+        .delete(`http://127.0.0.1:8000/api/v1/jobrole/${roleID}`)
+        .then(() => {
+          alert("Job Role has been successfully soft-deleted!")
+          window.location.reload()
+        })
+    },
     onSubmit(roleid){
       var specifiedJob = this.roles.find(x   => x.id === roleid)
       if(specifiedJob.deleted == true){

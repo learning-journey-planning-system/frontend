@@ -49,6 +49,7 @@
                           <h5 class="card-title mb-4">{{ course.course_name }}</h5>
                           <p>Type: {{ course.course_type }}</p>
                           <p>Category: {{ course.course_category }}</p>
+                          <CompletionStatusButton />
                         </div>
                       </div>
                     </div>
@@ -70,12 +71,14 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import BackMiniNav from '../components/BackMiniNav.vue';
+import CompletionStatusButton from '../components/CompletionStatusButton.vue'
 import axios from 'axios';
 
 export default {
   components: {
     NavBar,
-    BackMiniNav
+    BackMiniNav,
+    CompletionStatusButton
     },
   data(){
     return {
@@ -146,7 +149,7 @@ export default {
       .get(`http://127.0.0.1:8000/api/v1/staff/${sessionStorage.getItem('staffID')}/learningjourneys`)
       .then((response) => {
         this.staffLearningJourneys = response.data;
-        console.log(this.staffLearningJourneys)
+        // console.log(this.staffLearningJourneys)
       })
   }
   }
