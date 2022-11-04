@@ -63,7 +63,7 @@ export default {
             history.back()
           })
       } else{
-        alert("Job with this skill name already exists")
+        alert("Job with this name already exists")
       }
         }
     },
