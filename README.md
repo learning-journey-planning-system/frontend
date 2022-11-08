@@ -41,5 +41,5 @@ This is the source code for the Learning Journey Planning System by All-in-One. 
 
 <!-- ACKNOWLEDGMENTS -->
 ## References
-
-* [insert link here](https://insert-link-here)
+* [https://vuejs.org/guide/introduction.html](https://vuejs.org/guide/introduction.html)
+* [https://getbootstrap.com/](https://getbootstrap.com/)
